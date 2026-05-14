@@ -6,6 +6,7 @@ dist/
 playwright-report/
 test-results/
 qa-*.png
+jd_sample.html
 .DS_Store
 Thumbs.db
 *.et

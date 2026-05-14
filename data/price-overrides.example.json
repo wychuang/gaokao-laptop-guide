@@ -1,0 +1,10 @@
+{
+  "甜品砖头-01-41": {
+    "priceCny": 9999,
+    "note": "人工核价示例；复制为 data/price-overrides.json 后生效。"
+  },
+  "雷神猎刃S2025锐龙版": {
+    "priceCny": 9999,
+    "note": "也可以用品牌+型号作为 key。"
+  }
+}

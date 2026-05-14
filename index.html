@@ -207,7 +207,7 @@
         border: 2px solid var(--ink);
         border-radius: 8px;
         box-shadow: var(--shadow);
-        overflow: hidden;
+        overflow: visible;
       }
 
       .chart-title {
@@ -244,6 +244,7 @@
         width: 100%;
         min-height: 520px;
         overflow-x: auto;
+        overflow-y: visible;
       }
 
       svg {
@@ -292,8 +293,8 @@
       .hover-card {
         position: absolute;
         z-index: 5;
-        width: 286px;
-        min-height: 220px;
+        width: 316px;
+        min-height: 236px;
         display: none;
         pointer-events: none;
         background: #fff;
@@ -309,7 +310,7 @@
 
       .hover-card img {
         width: 100%;
-        height: 142px;
+        height: 154px;
         object-fit: cover;
         background: #eef1ec;
       }
@@ -357,7 +358,7 @@
       .card {
         display: grid;
         grid-template-rows: 190px auto;
-        min-height: 520px;
+        min-height: 590px;
         background: var(--panel);
         border: 1px solid var(--line);
         border-radius: 8px;
@@ -374,6 +375,40 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+      }
+
+      .price-panel {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+
+      .price-cell {
+        padding: 9px 10px;
+        border: 1px solid #dfe5dc;
+        border-radius: 8px;
+        background: #f9fbf8;
+      }
+
+      .price-cell b {
+        display: block;
+        color: var(--muted);
+        font-size: 11px;
+        margin-bottom: 3px;
+      }
+
+      .price-cell strong {
+        display: block;
+        font-size: 18px;
+        line-height: 1.2;
+      }
+
+      .price-cell span {
+        display: block;
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 12px;
       }
 
       .tag-row {
@@ -548,6 +583,17 @@
         font-weight: 900;
       }
 
+      .placeholder span {
+        display: block;
+        margin-top: 8px;
+        color: var(--tomato);
+        font-size: 12px;
+      }
+
+      .placeholder.small {
+        min-height: 154px;
+      }
+
       @media (max-width: 1080px) {
         .topbar,
         .toolbar {
@@ -575,6 +621,7 @@
         }
 
         .switches,
+        .price-panel,
         .specs {
           grid-template-columns: 1fr;
         }
@@ -730,6 +777,10 @@
 
       const colorFor = (item) => item.category === "甜品砖头" ? "var(--cobalt)" : "var(--tomato)";
       const fmt = (value, digits = 1) => Number.isFinite(value) ? Number(value).toFixed(digits) : "-";
+      const yuan = (value) => Number.isFinite(value) ? `¥${Math.round(value).toLocaleString("zh-CN")}` : "-";
+      const pricePoint = (item) => Number.isFinite(item.pricePointK) ? item.pricePointK : item.priceMidK;
+      const priceBasisLabel = (item) => item.priceBasis === "manual" ? "人工核价" : "区间中值";
+      const rangeText = (item) => item.priceRangeCny ? `${yuan(item.priceRangeCny[0])}-${yuan(item.priceRangeCny[1])}` : item.priceLabel;
       const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({
         "&": "&amp;",
         "<": "&lt;",
@@ -783,6 +834,8 @@
             item.model,
             item.cpu,
             item.gpu,
+            item.priceDisplay,
+            item.priceLabel,
             item.display,
             item.memory,
             item.storage,
@@ -800,10 +853,28 @@
             && (!state.avoidOled || !String(item.display).toLowerCase().includes("oled"))
             && (!term || haystack.includes(term));
         }).sort((a, b) => {
-          if (state.sort === "price") return a.priceMidK - b.priceMidK;
+          if (state.sort === "price") return pricePoint(a) - pricePoint(b);
           if (state.sort === "weight") return (a.weightKg || 99) - (b.weightKg || 99);
           if (state.sort === "thickness") return (a.thicknessMm || 99) - (b.thicknessMm || 99);
           return dataset.items.indexOf(a) - dataset.items.indexOf(b);
+        });
+      }
+
+      function placeholderMarkup(item, small = false) {
+        return `<div class="placeholder${small ? " small" : ""}">${escapeHtml(item.brand)}<br>${escapeHtml(item.model)}<br><span>外观图加载失败</span></div>`;
+      }
+
+      function imageMarkup(item, options = {}) {
+        if (!item.image) return placeholderMarkup(item, options.small);
+        return `<img class="js-product-image" src="${escapeHtml(item.image)}" referrerpolicy="no-referrer" data-brand="${escapeHtml(item.brand)}" data-model="${escapeHtml(item.model)}" alt="${escapeHtml(item.brand + item.model)}">`;
+      }
+
+      function bindImageFallbacks(root) {
+        root.querySelectorAll(".js-product-image").forEach((image) => {
+          image.addEventListener("error", () => {
+            const item = { brand: image.dataset.brand || "机型", model: image.dataset.model || "" };
+            image.outerHTML = placeholderMarkup(item, image.closest(".hover-card") !== null);
+          }, { once: true });
         });
       }
 
@@ -827,38 +898,53 @@
         const margin = { left: 72, right: 42, top: 42, bottom: 66 };
         const plotW = width - margin.left - margin.right;
         const plotH = height - margin.top - margin.bottom;
-        const prices = dataset.items.map((item) => item.priceMidK);
-        const weights = dataset.items.map((item) => item.weightKg).filter(Number.isFinite);
-        const xMin = Math.floor(Math.min(...prices) - 1);
-        const xMax = Math.ceil(Math.max(...prices) + 1);
-        const yMin = Math.max(2.2, Math.floor((Math.min(...weights) - 0.1) * 10) / 10);
-        const yMax = Math.ceil((Math.max(...weights) + 0.1) * 10) / 10;
-        const x = (value) => margin.left + ((value - xMin) / (xMax - xMin)) * plotW;
+        const domainItems = items.length ? items : dataset.items;
+        const prices = domainItems.flatMap((item) => [item.priceMinK, item.priceMaxK, pricePoint(item)]).filter(Number.isFinite);
+        const weights = domainItems.map((item) => item.weightKg).filter(Number.isFinite);
+        const rawXMin = Math.min(...prices);
+        const rawXMax = Math.max(...prices);
+        const rawYMin = Math.min(...weights);
+        const rawYMax = Math.max(...weights);
+        const minSpan = state.price === "all" ? 4 : 0.8;
+        const xCenter = (rawXMin + rawXMax) / 2;
+        const xSpan = Math.max(rawXMax - rawXMin, minSpan);
+        const xMin = Math.max(0, Math.floor((xCenter - xSpan / 2 - xSpan * 0.08) * 10) / 10);
+        const xMax = Math.ceil((xCenter + xSpan / 2 + xSpan * 0.08) * 10) / 10;
+        const ySpan = Math.max(rawYMax - rawYMin, 0.5);
+        const yMin = Math.max(2.1, Math.floor((rawYMin - ySpan * 0.12) * 10) / 10);
+        const yMax = Math.ceil((rawYMax + ySpan * 0.12) * 10) / 10;
+        const x = (value) => margin.left + ((value - xMin) / Math.max(0.1, xMax - xMin)) * plotW;
         const y = (value) => margin.top + ((value - yMin) / (yMax - yMin)) * plotH;
         const thicknesses = dataset.items.map((item) => item.thicknessMm).filter(Number.isFinite);
         const tMin = Math.min(...thicknesses);
         const tMax = Math.max(...thicknesses);
         const r = (value) => 7 + (((value || tMin) - tMin) / Math.max(1, tMax - tMin)) * 6;
-        const priceTicks = [10, 12, 14, 16, 20, 25, 30, 35, 40].filter((tick) => tick >= xMin && tick <= xMax);
+        const priceTicks = [];
+        const tickStep = xMax - xMin <= 1.5 ? 0.25 : xMax - xMin <= 4 ? 0.5 : xMax - xMin <= 10 ? 1 : 5;
+        for (let tick = Math.ceil(xMin / tickStep) * tickStep; tick <= xMax + 0.001; tick += tickStep) {
+          priceTicks.push(Number(tick.toFixed(2)));
+        }
         const weightTicks = [];
         for (let tick = Math.ceil(yMin * 10) / 10; tick <= yMax + 0.01; tick += 0.2) {
           weightTicks.push(Number(tick.toFixed(1)));
         }
 
         const grid = [
-          ...priceTicks.map((tick) => `<line class="grid-line" x1="${x(tick)}" x2="${x(tick)}" y1="${margin.top}" y2="${height - margin.bottom}"></line><text x="${x(tick)}" y="${height - 24}" text-anchor="middle">${tick}k</text>`),
+          ...priceTicks.map((tick) => `<line class="grid-line" x1="${x(tick)}" x2="${x(tick)}" y1="${margin.top}" y2="${height - margin.bottom}"></line><text x="${x(tick)}" y="${height - 24}" text-anchor="middle">${tick % 1 === 0 ? tick.toFixed(0) : tick.toFixed(2)}k</text>`),
           ...weightTicks.map((tick) => `<line class="grid-line" x1="${margin.left}" x2="${width - margin.right}" y1="${y(tick)}" y2="${y(tick)}"></line><text x="${margin.left - 12}" y="${y(tick) + 4}" text-anchor="end">${tick}</text>`)
         ].join("");
 
         const points = items.map((item, index) => {
-          const jitterX = ((index % 5) - 2) * 8;
+          const jitterX = ((index % 5) - 2) * (state.price === "all" ? 8 : 16);
           const jitterY = ((index % 3) - 1) * 6;
-          const cx = x(item.priceMidK) + jitterX;
+          const cx = x(pricePoint(item)) + jitterX;
           const cy = y(item.weightKg || yMax) + jitterY;
+          const labelX = 13 + (index % 2) * 4;
+          const labelY = -10 - (index % 4) * 9;
           const gpuStroke = item.gpu.includes("5090") ? "var(--violet)" : item.gpu.includes("5080") ? "var(--gold)" : "var(--ink)";
           return `<g class="point" data-id="${escapeHtml(item.id)}" transform="translate(${cx}, ${cy})">
             <circle r="${r(item.thicknessMm)}" fill="${colorFor(item)}" stroke="${gpuStroke}"></circle>
-            <text x="13" y="-10">${escapeHtml(item.priceLabel)}</text>
+            <text x="${labelX}" y="${labelY}">${escapeHtml(item.priceDisplay || item.priceLabel)}</text>
           </g>`;
         }).join("");
 
@@ -868,7 +954,7 @@
           <line class="axis-line" x1="${margin.left}" x2="${width - margin.right}" y1="${height - margin.bottom}" y2="${height - margin.bottom}"></line>
           <line class="axis-line" x1="${margin.left}" x2="${margin.left}" y1="${margin.top}" y2="${height - margin.bottom}"></line>
           <g class="axis">
-            <text x="${width / 2}" y="${height - 8}" text-anchor="middle">参考价位，人民币千元</text>
+            <text x="${width / 2}" y="${height - 8}" text-anchor="middle">坐标价，人民币千元（无人工核价时取指南区间中值）</text>
             <text x="20" y="${height / 2}" transform="rotate(-90 20 ${height / 2})" text-anchor="middle">重量 kg</text>
           </g>
           ${points}
@@ -883,26 +969,30 @@
       }
 
       function showHover(item, event) {
-        const image = item.image
-          ? `<img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.brand + item.model)}">`
-          : `<div class="placeholder">${escapeHtml(item.brand)}<br>${escapeHtml(item.model)}</div>`;
+        const image = imageMarkup(item, { small: true });
         els.hover.innerHTML = `${image}<div class="hover-body">
           <strong>${escapeHtml(item.brand)} ${escapeHtml(item.model)}</strong>
-          <p>${escapeHtml(item.priceLabel)} / ${escapeHtml(item.gpu)} / ${fmt(item.weightKg, 2)}kg / ${fmt(item.thicknessMm, 1)}mm</p>
+          <p>${escapeHtml(item.priceDisplay || item.priceLabel)}（${escapeHtml(priceBasisLabel(item))}） / ${escapeHtml(item.gpu)}</p>
+          <p>${escapeHtml(rangeText(item))} / ${fmt(item.weightKg, 2)}kg / ${fmt(item.thicknessMm, 1)}mm</p>
           <p>${escapeHtml((item.pros || [])[0] || "按指南顺序展示")}</p>
         </div>`;
         els.hover.classList.add("show");
+        bindImageFallbacks(els.hover);
         moveHover(event);
       }
 
       function moveHover(event) {
         const zone = document.querySelector(".chart-zone").getBoundingClientRect();
-        const cardW = 286;
+        const cardW = els.hover.offsetWidth || 316;
+        const cardH = els.hover.offsetHeight || 236;
         const nextX = event.clientX - zone.left + 18;
         const nextY = event.clientY - zone.top + 18;
         const x = Math.min(nextX, zone.width - cardW - 12);
+        const y = nextY + cardH > zone.height - 12
+          ? event.clientY - zone.top - cardH - 18
+          : nextY;
         els.hover.style.left = `${Math.max(12, x)}px`;
-        els.hover.style.top = `${Math.max(64, nextY)}px`;
+        els.hover.style.top = `${Math.max(64, y)}px`;
       }
 
       function hideHover() {
@@ -919,9 +1009,7 @@
           return;
         }
         els.cards.innerHTML = items.map((item) => {
-          const image = item.image
-            ? `<img src="${escapeHtml(item.image)}" loading="lazy" alt="${escapeHtml(item.brand + item.model)}">`
-            : `<div class="placeholder">${escapeHtml(item.brand)}<br>${escapeHtml(item.model)}</div>`;
+          const image = imageMarkup(item);
           const source = item.imageSource ? `<a class="action secondary" href="${escapeHtml(item.imageSource)}" target="_blank" rel="noreferrer">外观来源</a>` : "";
           const link = item.guideLink ? `<a class="action" href="${escapeHtml(item.guideLink)}" target="_blank" rel="noreferrer">懒人链接</a>` : "";
           return `<article class="card">
@@ -929,7 +1017,7 @@
               ${image}
               <div class="tag-row">
                 <span class="tag">${escapeHtml(item.category)}</span>
-                <span class="tag">${escapeHtml(item.priceLabel)}</span>
+                <span class="tag">${escapeHtml(item.priceDisplay || item.priceLabel)}</span>
                 <span class="tag">${escapeHtml(item.gpu)}</span>
               </div>
             </div>
@@ -939,6 +1027,10 @@
                 <span>${escapeHtml(item.screenSize ? `${item.screenSize} 英寸` : "")}</span>
               </div>
               <h3>${escapeHtml(item.model)}</h3>
+              <div class="price-panel">
+                <div class="price-cell"><b>坐标价</b><strong>${escapeHtml(item.priceDisplay || item.priceLabel)}</strong><span>${escapeHtml(priceBasisLabel(item))}</span></div>
+                <div class="price-cell"><b>指南价位段</b><strong>${escapeHtml(item.priceLabel)}</strong><span>${escapeHtml(rangeText(item))}</span></div>
+              </div>
               <div class="specs">
                 <div class="spec"><b>CPU</b><span>${escapeHtml(item.cpu || "-")}</span></div>
                 <div class="spec"><b>屏幕</b><span>${escapeHtml(item.display || "-")}</span></div>
@@ -954,6 +1046,7 @@
             </div>
           </article>`;
         }).join("");
+        bindImageFallbacks(els.cards);
       }
 
       function renderSources() {

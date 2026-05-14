@@ -5,6 +5,8 @@
 ```text
 data/
   laptops.json      # 页面使用的机型数据
+  price-overrides.example.json
+  price-overrides.json # 可选，人工核价文件
   *.et              # 本地源表格，默认不提交
 .github/
   workflows/pages.yml

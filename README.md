@@ -38,6 +38,8 @@ https://www.kdocs.cn/l/chzEHrH90jRz
 
 - 页面中的价格使用指南里的价位段，例如 `9-11k`、`20-30k`。
 - 这些价位没有计算神券、国补、地区仓、缺货、临时促销或平台价格波动。
+- 源表格目前没有逐机型实时成交价；没有人工核价时，坐标图使用价位段中值作为“坐标价”，并在卡片里标明口径。
+- 如果要展示更精确的当日价格，可以复制 `data/price-overrides.example.json` 为 `data/price-overrides.json`，填入 `priceCny` 后重新运行抽取脚本。
 - 买之前仍然需要重新核对当天价格和售后政策。
 
 ## 本地预览
@@ -70,6 +72,16 @@ python -m venv .venv
 ```
 
 脚本会优先读取 `data/*.et`，并重新生成 `data/laptops.json`。如果云端表格结构发生变化，可能需要同步调整 `scripts/extract_guide.py` 的列映射。
+
+可选：人工核价。
+
+```powershell
+Copy-Item .\data\price-overrides.example.json .\data\price-overrides.json
+notepad .\data\price-overrides.json
+.\.venv\Scripts\python.exe .\scripts\extract_guide.py
+```
+
+填写 `priceCny` 后，页面的坐标点、卡片价格和价格排序会使用人工核价；没有填写的机型仍使用价位段中值。
 
 ## 验证
 

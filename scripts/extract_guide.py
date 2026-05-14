@@ -11,6 +11,7 @@ import xlrd
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 SOURCE_DIRS = [PROJECT_ROOT / "data", PROJECT_ROOT.parent]
 OUTPUT = PROJECT_ROOT / "data" / "laptops.json"
+PRICE_OVERRIDES = PROJECT_ROOT / "data" / "price-overrides.json"
 
 
 SHEET_CONFIGS = [
@@ -220,7 +221,23 @@ def normalize_gpu(gpu: str) -> str:
     return clean(gpu)
 
 
-def parse_sheet(book: xlrd.Book, config: dict[str, Any]) -> list[dict[str, Any]]:
+def load_price_overrides() -> dict[str, Any]:
+    if not PRICE_OVERRIDES.exists():
+        return {}
+    return json.loads(PRICE_OVERRIDES.read_text(encoding="utf-8"))
+
+
+def price_override_for(overrides: dict[str, Any], item_id: str, brand: str, model: str) -> dict[str, Any]:
+    if item_id in overrides:
+        return overrides[item_id]
+    model_key = compact(f"{brand}{model}")
+    for key, value in overrides.items():
+        if compact(key) == model_key:
+            return value
+    return {}
+
+
+def parse_sheet(book: xlrd.Book, config: dict[str, Any], price_overrides: dict[str, Any]) -> list[dict[str, Any]]:
     sheet = book.sheet_by_name(config["sheet"])
     stop_before = config["stop_before_row"]
     cols = config["cols"]
@@ -270,6 +287,12 @@ def parse_sheet(book: xlrd.Book, config: dict[str, Any]) -> list[dict[str, Any]]
         weight = numeric(row_data["weightKg"])
         image_data = image_for(brand, model)
         item_id = f"{config['category']}-{len(items) + 1:02d}-{row + 1}"
+        override = price_override_for(price_overrides, item_id, brand, model)
+        exact_price = numeric(override.get("priceCny")) if override else None
+        price_mid_cny = int(section["priceMidK"] * 1000)
+        price_point_k = round((exact_price or price_mid_cny) / 1000, 2)
+        price_basis = "manual" if exact_price else "guide_range_midpoint"
+        price_display = f"¥{int(exact_price):,}" if exact_price else f"约 ¥{price_mid_cny:,}"
         item = {
             "id": item_id,
             "category": config["category"],
@@ -279,6 +302,13 @@ def parse_sheet(book: xlrd.Book, config: dict[str, Any]) -> list[dict[str, Any]]
             "priceMinK": section["priceMinK"],
             "priceMaxK": section["priceMaxK"],
             "priceMidK": section["priceMidK"],
+            "priceRangeCny": [section["priceMinK"] * 1000, section["priceMaxK"] * 1000],
+            "priceCny": int(exact_price) if exact_price else None,
+            "estimatedPriceCny": price_mid_cny,
+            "pricePointK": price_point_k,
+            "priceDisplay": price_display,
+            "priceBasis": price_basis,
+            "priceNote": override.get("note", "") if override else "源表格仅提供价位段；这里用区间中值定位。",
             "screenSize": screen_size,
             "thicknessMm": thickness,
             "weightKg": weight,
@@ -312,9 +342,10 @@ def source_file() -> Path:
 def main() -> None:
     source = source_file()
     book = xlrd.open_workbook(str(source), formatting_info=True)
+    price_overrides = load_price_overrides()
     items: list[dict[str, Any]] = []
     for config in SHEET_CONFIGS:
-        items.extend(parse_sheet(book, config))
+        items.extend(parse_sheet(book, config, price_overrides))
 
     data = {
         "title": "高考后游戏本选购可视化",

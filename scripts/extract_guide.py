@@ -291,8 +291,34 @@ def parse_sheet(book: xlrd.Book, config: dict[str, Any], price_overrides: dict[s
         exact_price = numeric(override.get("priceCny")) if override else None
         price_mid_cny = int(section["priceMidK"] * 1000)
         price_point_k = round((exact_price or price_mid_cny) / 1000, 2)
-        price_basis = "manual" if exact_price else "guide_range_midpoint"
-        price_display = f"¥{int(exact_price):,}" if exact_price else f"约 ¥{price_mid_cny:,}"
+
+        # Price basis mapping from override confidence
+        confidence = override.get("confidence", "") if override else ""
+        if exact_price:
+            if confidence == "high":
+                price_basis = "jd_live"
+            elif confidence == "medium":
+                price_basis = "published"
+            else:
+                price_basis = "manual"
+            price_display = f"¥{int(exact_price):,}"
+        else:
+            price_basis = "guide_range_midpoint"
+            price_display = f"约 ¥{price_mid_cny:,}"
+
+        # Price source info
+        price_source = None
+        if override.get("sourceName"):
+            price_source = {
+                "name": override.get("sourceName", ""),
+                "url": override.get("sourceUrl", ""),
+                "confidence": confidence or "low",
+                "method": override.get("method", ""),
+            }
+
+        # Configs from override (JD variants)
+        configs = override.get("configs") if override else None
+
         item = {
             "id": item_id,
             "category": config["category"],
@@ -308,7 +334,9 @@ def parse_sheet(book: xlrd.Book, config: dict[str, Any], price_overrides: dict[s
             "pricePointK": price_point_k,
             "priceDisplay": price_display,
             "priceBasis": price_basis,
+            "priceSource": price_source,
             "priceNote": override.get("note", "") if override else "源表格仅提供价位段；这里用区间中值定位。",
+            "configs": configs,
             "screenSize": screen_size,
             "thicknessMm": thickness,
             "weightKg": weight,

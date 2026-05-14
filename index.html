@@ -431,6 +431,30 @@
         font-weight: 900;
       }
 
+      .source-badge {
+        display: inline-block;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+      .source-badge.jd-live { background: #16a34a; color: #fff; }
+      .source-badge.published { background: #2563eb; color: #fff; }
+      .source-badge.manual { background: var(--muted); color: #fff; }
+      .source-badge.estimate { background: #dc2626; color: #fff; }
+
+      .config-select {
+        width: 100%;
+        margin-top: 6px;
+        padding: 4px 6px;
+        border: 1px solid var(--divider);
+        border-radius: 5px;
+        font-size: 11px;
+        color: var(--ink);
+        background: var(--paper);
+      }
+
       .card-body {
         padding: 14px;
       }
@@ -779,7 +803,35 @@
       const fmt = (value, digits = 1) => Number.isFinite(value) ? Number(value).toFixed(digits) : "-";
       const yuan = (value) => Number.isFinite(value) ? `¥${Math.round(value).toLocaleString("zh-CN")}` : "-";
       const pricePoint = (item) => Number.isFinite(item.pricePointK) ? item.pricePointK : item.priceMidK;
-      const priceBasisLabel = (item) => item.priceBasis === "manual" ? "人工核价" : "区间中值";
+      const priceBasisLabel = (item) => {
+        switch (item.priceBasis) {
+          case "jd_live": return "京东实时";
+          case "published": return "发布价参考";
+          case "manual": return "人工核价";
+          default: return "区间中值";
+        }
+      };
+      const priceBasisClass = (item) => {
+        switch (item.priceBasis) {
+          case "jd_live": return "jd-live";
+          case "published": return "published";
+          case "manual": return "manual";
+          default: return "estimate";
+        }
+      };
+      const sourceBadge = (item) => {
+        const label = priceBasisLabel(item);
+        const cls = priceBasisClass(item);
+        return `<span class="source-badge ${cls}">${label}</span>`;
+      };
+      const configOptions = (item) => {
+        const configs = item.configs;
+        if (!configs || configs.length < 2) return "";
+        const opts = configs.map((c, idx) => (
+          `<option value="${idx}"${c.isDefault ? " selected" : ""}>${escapeHtml(c.spec)}</option>`
+        )).join("");
+        return `<select class="config-select js-config" data-id="${escapeHtml(item.id)}">${opts}</select>`;
+      };
       const rangeText = (item) => item.priceRangeCny ? `${yuan(item.priceRangeCny[0])}-${yuan(item.priceRangeCny[1])}` : item.priceLabel;
       const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({
         "&": "&amp;",
@@ -972,7 +1024,7 @@
         const image = imageMarkup(item, { small: true });
         els.hover.innerHTML = `${image}<div class="hover-body">
           <strong>${escapeHtml(item.brand)} ${escapeHtml(item.model)}</strong>
-          <p>${escapeHtml(item.priceDisplay || item.priceLabel)}（${escapeHtml(priceBasisLabel(item))}） / ${escapeHtml(item.gpu)}</p>
+          <p>${escapeHtml(item.priceDisplay || item.priceLabel)} ${sourceBadge(item)} / ${escapeHtml(item.gpu)}</p>
           <p>${escapeHtml(rangeText(item))} / ${fmt(item.weightKg, 2)}kg / ${fmt(item.thicknessMm, 1)}mm</p>
           <p>${escapeHtml((item.pros || [])[0] || "按指南顺序展示")}</p>
         </div>`;
@@ -1011,7 +1063,7 @@
         els.cards.innerHTML = items.map((item) => {
           const image = imageMarkup(item);
           const source = item.imageSource ? `<a class="action secondary" href="${escapeHtml(item.imageSource)}" target="_blank" rel="noreferrer">外观来源</a>` : "";
-          const link = item.guideLink ? `<a class="action" href="${escapeHtml(item.guideLink)}" target="_blank" rel="noreferrer">懒人链接</a>` : "";
+          const link = item.guideLink ? `<a class="action js-guide-link" href="${escapeHtml(item.guideLink)}" target="_blank" rel="noreferrer">懒人链接</a>` : "";
           return `<article class="card">
             <div class="card-media">
               ${image}
@@ -1028,7 +1080,12 @@
               </div>
               <h3>${escapeHtml(item.model)}</h3>
               <div class="price-panel">
-                <div class="price-cell"><b>坐标价</b><strong>${escapeHtml(item.priceDisplay || item.priceLabel)}</strong><span>${escapeHtml(priceBasisLabel(item))}</span></div>
+                <div class="price-cell">
+                  <b>参考价</b>
+                  <strong>${escapeHtml(item.priceDisplay || item.priceLabel)}</strong>
+                  <span>${sourceBadge(item)}${item.priceSource ? " · " + escapeHtml(item.priceSource.name) : ""}</span>
+                  ${configOptions(item)}
+                </div>
                 <div class="price-cell"><b>指南价位段</b><strong>${escapeHtml(item.priceLabel)}</strong><span>${escapeHtml(rangeText(item))}</span></div>
               </div>
               <div class="specs">
@@ -1047,6 +1104,21 @@
           </article>`;
         }).join("");
         bindImageFallbacks(els.cards);
+        // Bind config selector events
+        els.cards.querySelectorAll(".js-config").forEach((sel) => {
+          sel.addEventListener("change", () => {
+            const itemId = sel.dataset.id;
+            const item = dataset.items.find((i) => i.id === itemId);
+            if (!item || !item.configs) return;
+            const cfg = item.configs[sel.value];
+            if (!cfg) return;
+            const linkEl = sel.closest(".card").querySelector(".js-guide-link");
+            if (linkEl && cfg.sku) {
+              linkEl.href = `https://item.jd.com/${cfg.sku}.html`;
+              linkEl.title = `京东 SKU: ${cfg.sku}`;
+            }
+          });
+        });
       }
 
       function renderSources() {

@@ -9,3 +9,4 @@ qa-*.png
 .DS_Store
 Thumbs.db
 *.et
+data/price-overrides.json

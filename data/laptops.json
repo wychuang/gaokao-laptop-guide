@@ -19,12 +19,70 @@
         9000,
         11000
       ],
-      "priceCny": null,
+      "priceCny": 7999,
       "estimatedPriceCny": 10000,
-      "pricePointK": 10.0,
-      "priceDisplay": "约 ¥10,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "pricePointK": 8.0,
+      "priceDisplay": "¥7,999",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "京东国补到手价",
+        "url": "https://www.ithome.com/0/848/111.htm",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "雷神猎刃S R9-7945HX/16G/1T/RTX5070Ti/蜂鸟屏。日常价¥10,499，国补后¥7,999。另有i9版同价。",
+      "configs": [
+        {
+          "sku": "100191861120",
+          "spec": "RTX5080|猎刃16 i9-13900HX|16G|1T|300Hz",
+          "isDefault": false
+        },
+        {
+          "sku": "100157208115",
+          "spec": "RTX5070Ti|R9 7945HX|16G|1T|蜂鸟屏",
+          "isDefault": true
+        },
+        {
+          "sku": "100200144102",
+          "spec": "RTX5070Ti|英特尔酷睿i9HX|16G|1T|蜂鸟屏",
+          "isDefault": false
+        },
+        {
+          "sku": "100318826474",
+          "spec": "RTX5070Ti|R7 7745HX|16G|1T|蜂鸟屏",
+          "isDefault": false
+        },
+        {
+          "sku": "100212308560",
+          "spec": "RTX5070|英特尔酷睿i9HX|16G|1T|蜂鸟屏",
+          "isDefault": false
+        },
+        {
+          "sku": "100212308572",
+          "spec": "RTX5060|英特尔酷睿i9HX|16G|1T|蜂鸟屏",
+          "isDefault": false
+        },
+        {
+          "sku": "100212308588",
+          "spec": "RTX5060|14代i9-14900HX|16G|1T|蜂鸟屏",
+          "isDefault": false
+        },
+        {
+          "sku": "100253916480",
+          "spec": "RTX5060|英特尔酷睿i9HX|32G|1T|天青色",
+          "isDefault": false
+        },
+        {
+          "sku": "100201140997",
+          "spec": "RTX5060|Ultra7 255HX|16G|1T|云影屏",
+          "isDefault": false
+        },
+        {
+          "sku": "100203679745",
+          "spec": "RTX5060|英特尔酷睿i7HX|16G|1T|天青色",
+          "isDefault": false
+        }
+      ],
       "screenSize": 16.0,
       "thicknessMm": 27.0,
       "weightKg": 2.53,
@@ -70,12 +128,105 @@
         9000,
         11000
       ],
-      "priceCny": null,
+      "priceCny": 7999,
       "estimatedPriceCny": 10000,
-      "pricePointK": 10.0,
-      "priceDisplay": "约 ¥10,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "pricePointK": 8.0,
+      "priceDisplay": "¥7,999",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "京东国补到手价",
+        "url": "https://www.ithome.com/0/852/512.htm",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "机械师曙光16S R9-7945HX/16G/1T/RTX5070Ti。首发¥9,999，国补后¥7,999。",
+      "configs": [
+        {
+          "sku": "100341678176",
+          "spec": "RTX3050|【性价比】星辰15 13代i5 165Hz",
+          "isDefault": false
+        },
+        {
+          "sku": "100250374380",
+          "spec": "RTX5060|爆款 曙光16S R7HX|16G1T|300Hz",
+          "isDefault": false
+        },
+        {
+          "sku": "100209052737",
+          "spec": "RTX5060|曙光16S R7HX|16G 1T|白",
+          "isDefault": false
+        },
+        {
+          "sku": "100209052769",
+          "spec": "RTX5060|【行业领先】 R9 9850HX|16G|1T",
+          "isDefault": false
+        },
+        {
+          "sku": "100212138980",
+          "spec": "RTX5060|曙光16S R9 7945HX|16G 1T|灰",
+          "isDefault": false
+        },
+        {
+          "sku": "100253783718",
+          "spec": "RTX5060|曙光16S R9HX|32G1T|白",
+          "isDefault": false
+        },
+        {
+          "sku": "100228257864",
+          "spec": "RTX5060|曙光15 i7HX|16G|1T|165HZ",
+          "isDefault": false
+        },
+        {
+          "sku": "100165200761",
+          "spec": "RTX5070|【性价比】曙光16S R9HX|300Hz屏",
+          "isDefault": false
+        },
+        {
+          "sku": "100212308590",
+          "spec": "RTX5070|曙光15 i9HX|16G|1T|165Hz屏",
+          "isDefault": false
+        },
+        {
+          "sku": "100199903971",
+          "spec": "RTX5070|曙光16S U7|32G|1T|300Hz|星釉白",
+          "isDefault": false
+        },
+        {
+          "sku": "100152429309",
+          "spec": "RTX5070Ti|【采销力荐】曙光16S R9HX|300Hz",
+          "isDefault": true
+        },
+        {
+          "sku": "100200468804",
+          "spec": "RTX5070Ti|曙光16S i9HX|16G|1T|300Hz屏",
+          "isDefault": false
+        },
+        {
+          "sku": "100200487228",
+          "spec": "RTX5070Ti|曙光16Pro Ultra7 32G|1T|300Hz",
+          "isDefault": false
+        },
+        {
+          "sku": "100192974396",
+          "spec": "RTX5080|【爆款】曙光16Pro R9HX|32G|1T",
+          "isDefault": false
+        },
+        {
+          "sku": "100192262364",
+          "spec": "RTX5080|曙光18Pro Ultra9 32G|2T|240Hz",
+          "isDefault": false
+        },
+        {
+          "sku": "100192262366",
+          "spec": "RTX5090|曙光18Pro Ultra9 32G|2T|240Hz",
+          "isDefault": false
+        },
+        {
+          "sku": "100205929402",
+          "spec": "RTX5090|曙光16Pro Ultra9 32G|1T|300Hz",
+          "isDefault": false
+        }
+      ],
       "screenSize": 16.0,
       "thicknessMm": 27.0,
       "weightKg": 2.53,
@@ -120,12 +271,19 @@
         9000,
         11000
       ],
-      "priceCny": null,
+      "priceCny": 8099,
       "estimatedPriceCny": 10000,
-      "pricePointK": 10.0,
-      "priceDisplay": "约 ¥10,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "pricePointK": 8.1,
+      "priceDisplay": "¥8,099",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "京东PLUS+国补到手价",
+        "url": "https://wiki.smzdm.com/p/oe0yvxv/",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "机械革命蛟龙16 Pro R9-8945HX/32G/1T/RTX5070Ti。面价¥10,499，PLUS+国补低至¥7,787。取¥8,099为近期中位。另有R9-9955HX版¥8,999。",
+      "configs": null,
       "screenSize": 16.0,
       "thicknessMm": 25.5,
       "weightKg": 2.44,
@@ -171,12 +329,19 @@
         9000,
         11000
       ],
-      "priceCny": null,
+      "priceCny": 9699,
       "estimatedPriceCny": 10000,
-      "pricePointK": 10.0,
-      "priceDisplay": "约 ¥10,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "pricePointK": 9.7,
+      "priceDisplay": "¥9,699",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "IT之家首发价",
+        "url": "https://www.ithome.com/0/895/874.htm",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "七彩虹橘宝R16 Pro R7-8745HX/32G/1T/RTX5070Ti。首发¥9,699。",
+      "configs": null,
       "screenSize": 16.0,
       "thicknessMm": 30.2,
       "weightKg": 2.45,
@@ -218,12 +383,19 @@
         9000,
         11000
       ],
-      "priceCny": null,
+      "priceCny": 9999,
       "estimatedPriceCny": 10000,
       "pricePointK": 10.0,
-      "priceDisplay": "约 ¥10,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "priceDisplay": "¥9,999",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "京东首发/国补价",
+        "url": "https://www.ithome.com/0/843/239.htm",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "微星泰坦16 U7-255HX/16G/1T/RTX5070Ti。国补价约¥9,999。",
+      "configs": null,
       "screenSize": 16.0,
       "thicknessMm": 30.0,
       "weightKg": 2.62,
@@ -271,12 +443,19 @@
         11000,
         12000
       ],
-      "priceCny": null,
+      "priceCny": 9999,
       "estimatedPriceCny": 11500,
-      "pricePointK": 11.5,
-      "priceDisplay": "约 ¥11,500",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "pricePointK": 10.0,
+      "priceDisplay": "¥9,999",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "IT之家起售价",
+        "url": "https://www.ithome.com/0/874/865.htm",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "雷神猎刃S Ultra R9-9850HX/32G/1T/RTX5070Ti。",
+      "configs": null,
       "screenSize": 16.0,
       "thicknessMm": 25.5,
       "weightKg": 2.5,
@@ -319,12 +498,19 @@
         11000,
         12000
       ],
-      "priceCny": null,
+      "priceCny": 11499,
       "estimatedPriceCny": 11500,
       "pricePointK": 11.5,
-      "priceDisplay": "约 ¥11,500",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "priceDisplay": "¥11,499",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "京东售价",
+        "url": "https://www.kdocs.cn/l/chzEHrH90jRz",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "机械革命蛟龙16 X Pro 2025 水冷模块版。",
+      "configs": null,
       "screenSize": 16.0,
       "thicknessMm": 25.5,
       "weightKg": 2.44,
@@ -370,12 +556,19 @@
         11000,
         12000
       ],
-      "priceCny": null,
+      "priceCny": 11499,
       "estimatedPriceCny": 11500,
       "pricePointK": 11.5,
-      "priceDisplay": "约 ¥11,500",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "priceDisplay": "¥11,499",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "京东售价",
+        "url": "https://www.kdocs.cn/l/chzEHrH90jRz",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "机械革命蛟龙16 Ultra 水冷模块版。",
+      "configs": null,
       "screenSize": 16.0,
       "thicknessMm": 28.1,
       "weightKg": 2.7,
@@ -420,12 +613,19 @@
         11000,
         12000
       ],
-      "priceCny": null,
+      "priceCny": 9999,
       "estimatedPriceCny": 11500,
-      "pricePointK": 11.5,
-      "priceDisplay": "约 ¥11,500",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "pricePointK": 10.0,
+      "priceDisplay": "¥9,999",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "京东售价",
+        "url": "https://www.kdocs.cn/l/chzEHrH90jRz",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "机械革命蛟龙16 Pro 2025 同系列参考价。",
+      "configs": null,
       "screenSize": 16.0,
       "thicknessMm": 25.5,
       "weightKg": 2.44,
@@ -471,12 +671,19 @@
         11000,
         12000
       ],
-      "priceCny": null,
+      "priceCny": 8499,
       "estimatedPriceCny": 11500,
-      "pricePointK": 11.5,
-      "priceDisplay": "约 ¥11,500",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "pricePointK": 8.5,
+      "priceDisplay": "¥8,499",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "IT之家国补价",
+        "url": "https://www.ithome.com/0/846/359.htm",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "机械革命极光X Pro 2025款。国补后¥8,499。",
+      "configs": null,
       "screenSize": 16.0,
       "thicknessMm": 25.5,
       "weightKg": 2.44,
@@ -521,12 +728,19 @@
         11000,
         12000
       ],
-      "priceCny": null,
+      "priceCny": 11499,
       "estimatedPriceCny": 11500,
       "pricePointK": 11.5,
-      "priceDisplay": "约 ¥11,500",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "priceDisplay": "¥11,499",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "IT之家发布价",
+        "url": "https://www.ithome.com/0/848/113.htm",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "机械革命耀世16 Ultra 冰川白/水冷模块。",
+      "configs": null,
       "screenSize": 16.0,
       "thicknessMm": 25.5,
       "weightKg": 2.44,
@@ -572,12 +786,19 @@
         11000,
         12000
       ],
-      "priceCny": null,
+      "priceCny": 11499,
       "estimatedPriceCny": 11500,
       "pricePointK": 11.5,
-      "priceDisplay": "约 ¥11,500",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "priceDisplay": "¥11,499",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "京东售价",
+        "url": "https://www.kdocs.cn/l/chzEHrH90jRz",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "机械师曙光16S 2025 酷睿Ultra版。",
+      "configs": null,
       "screenSize": 16.0,
       "thicknessMm": 25.5,
       "weightKg": 2.5,
@@ -623,12 +844,19 @@
         12000,
         14000
       ],
-      "priceCny": null,
+      "priceCny": 12999,
       "estimatedPriceCny": 13000,
       "pricePointK": 13.0,
-      "priceDisplay": "约 ¥13,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "priceDisplay": "¥12,999",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "京东售价",
+        "url": "https://www.kdocs.cn/l/chzEHrH90jRz",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "ROG魔霸新锐/2025/锐龙版。",
+      "configs": null,
       "screenSize": 16.0,
       "thicknessMm": 30.0,
       "weightKg": 2.36,
@@ -672,12 +900,70 @@
         12000,
         14000
       ],
-      "priceCny": null,
+      "priceCny": 11499,
       "estimatedPriceCny": 13000,
-      "pricePointK": 13.0,
-      "priceDisplay": "约 ¥13,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "pricePointK": 11.5,
+      "priceDisplay": "¥11,499",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "IT之家发布价",
+        "url": "https://www.ithome.com/0/848/113.htm",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "机械革命耀世16 Ultra 冰川白。",
+      "configs": [
+        {
+          "sku": "100153194763",
+          "spec": "RTX5080|U9-275HX/32G/1T",
+          "isDefault": false
+        },
+        {
+          "sku": "100335414674",
+          "spec": "RTX5080|【新品】U9-290HX Plus/32G/2TB",
+          "isDefault": false
+        },
+        {
+          "sku": "100328743822",
+          "spec": "RTX5060|18英寸新品/i7-14650HX/16G",
+          "isDefault": false
+        },
+        {
+          "sku": "100243300677",
+          "spec": "RTX5060|U7-255HX/16G/1T灰",
+          "isDefault": false
+        },
+        {
+          "sku": "100149203087",
+          "spec": "RTX5090|U9-275HX/64G/2T",
+          "isDefault": false
+        },
+        {
+          "sku": "100335414678",
+          "spec": "RTX5090|【新品】U9-290HX Plus/32G/2TB",
+          "isDefault": false
+        },
+        {
+          "sku": "100332458584",
+          "spec": "RTX5070|18英寸新品/U7-270HX Plus/16g黑",
+          "isDefault": false
+        },
+        {
+          "sku": "100352562138",
+          "spec": "RTX5070|18英寸新品/U7-270HX Plus/16g灰",
+          "isDefault": false
+        },
+        {
+          "sku": "100200325980",
+          "spec": "RTX5070Ti|U9-275HX/32G/1T",
+          "isDefault": true
+        },
+        {
+          "sku": "100335414636",
+          "spec": "RTX5070Ti|【新品】U9-290HX Plus/32G/1TB",
+          "isDefault": false
+        }
+      ],
       "screenSize": 16.0,
       "thicknessMm": 28.1,
       "weightKg": 2.7,
@@ -722,12 +1008,19 @@
         12000,
         14000
       ],
-      "priceCny": null,
+      "priceCny": 11499,
       "estimatedPriceCny": 13000,
-      "pricePointK": 13.0,
-      "priceDisplay": "约 ¥13,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "pricePointK": 11.5,
+      "priceDisplay": "¥11,499",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "IT之家发布价",
+        "url": "https://www.ithome.com/0/848/113.htm",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "机械革命耀世16 Ultra 冰川白/水冷模块。",
+      "configs": null,
       "screenSize": 16.0,
       "thicknessMm": 25.5,
       "weightKg": 2.54,
@@ -772,12 +1065,19 @@
         12000,
         14000
       ],
-      "priceCny": null,
+      "priceCny": 12999,
       "estimatedPriceCny": 13000,
       "pricePointK": 13.0,
-      "priceDisplay": "约 ¥13,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "priceDisplay": "¥12,999",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "京东售价",
+        "url": "https://www.kdocs.cn/l/chzEHrH90jRz",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "惠普暗影精灵MAX。",
+      "configs": null,
       "screenSize": 16.0,
       "thicknessMm": 28.0,
       "weightKg": 2.64,
@@ -823,12 +1123,19 @@
         14000,
         20000
       ],
-      "priceCny": null,
+      "priceCny": 14999,
       "estimatedPriceCny": 17000,
-      "pricePointK": 17.0,
-      "priceDisplay": "约 ¥17,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "pricePointK": 15.0,
+      "priceDisplay": "¥14,999",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "京东售价",
+        "url": "https://www.kdocs.cn/l/chzEHrH90jRz",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "机械师曙光16 Pro 2025。价位段14-16k。",
+      "configs": null,
       "screenSize": 16.0,
       "thicknessMm": 30.5,
       "weightKg": 2.67,
@@ -873,12 +1180,70 @@
         14000,
         20000
       ],
-      "priceCny": null,
+      "priceCny": 16999,
       "estimatedPriceCny": 17000,
       "pricePointK": 17.0,
-      "priceDisplay": "约 ¥17,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "priceDisplay": "¥16,999",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "京东售价",
+        "url": "https://www.kdocs.cn/l/chzEHrH90jRz",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "机械革命耀世16 Ultra 顶配。",
+      "configs": [
+        {
+          "sku": "100153194763",
+          "spec": "RTX5080|U9-275HX/32G/1T",
+          "isDefault": true
+        },
+        {
+          "sku": "100335414674",
+          "spec": "RTX5080|【新品】U9-290HX Plus/32G/2TB",
+          "isDefault": false
+        },
+        {
+          "sku": "100328743822",
+          "spec": "RTX5060|18英寸新品/i7-14650HX/16G",
+          "isDefault": false
+        },
+        {
+          "sku": "100243300677",
+          "spec": "RTX5060|U7-255HX/16G/1T灰",
+          "isDefault": false
+        },
+        {
+          "sku": "100149203087",
+          "spec": "RTX5090|U9-275HX/64G/2T",
+          "isDefault": false
+        },
+        {
+          "sku": "100335414678",
+          "spec": "RTX5090|【新品】U9-290HX Plus/32G/2TB",
+          "isDefault": false
+        },
+        {
+          "sku": "100332458584",
+          "spec": "RTX5070|18英寸新品/U7-270HX Plus/16g黑",
+          "isDefault": false
+        },
+        {
+          "sku": "100352562138",
+          "spec": "RTX5070|18英寸新品/U7-270HX Plus/16g灰",
+          "isDefault": false
+        },
+        {
+          "sku": "100200325980",
+          "spec": "RTX5070Ti|U9-275HX/32G/1T",
+          "isDefault": false
+        },
+        {
+          "sku": "100335414636",
+          "spec": "RTX5070Ti|【新品】U9-290HX Plus/32G/1TB",
+          "isDefault": false
+        }
+      ],
       "screenSize": 16.0,
       "thicknessMm": 28.1,
       "weightKg": 2.7,
@@ -923,12 +1288,70 @@
         14000,
         20000
       ],
-      "priceCny": null,
+      "priceCny": 16999,
       "estimatedPriceCny": 17000,
       "pricePointK": 17.0,
-      "priceDisplay": "约 ¥17,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "priceDisplay": "¥16,999",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "京东售价",
+        "url": "https://www.kdocs.cn/l/chzEHrH90jRz",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "机械革命蛟龙16 Ultra 顶配。",
+      "configs": [
+        {
+          "sku": "100153194763",
+          "spec": "RTX5080|U9-275HX/32G/1T",
+          "isDefault": true
+        },
+        {
+          "sku": "100335414674",
+          "spec": "RTX5080|【新品】U9-290HX Plus/32G/2TB",
+          "isDefault": false
+        },
+        {
+          "sku": "100328743822",
+          "spec": "RTX5060|18英寸新品/i7-14650HX/16G",
+          "isDefault": false
+        },
+        {
+          "sku": "100243300677",
+          "spec": "RTX5060|U7-255HX/16G/1T灰",
+          "isDefault": false
+        },
+        {
+          "sku": "100149203087",
+          "spec": "RTX5090|U9-275HX/64G/2T",
+          "isDefault": false
+        },
+        {
+          "sku": "100335414678",
+          "spec": "RTX5090|【新品】U9-290HX Plus/32G/2TB",
+          "isDefault": false
+        },
+        {
+          "sku": "100332458584",
+          "spec": "RTX5070|18英寸新品/U7-270HX Plus/16g黑",
+          "isDefault": false
+        },
+        {
+          "sku": "100352562138",
+          "spec": "RTX5070|18英寸新品/U7-270HX Plus/16g灰",
+          "isDefault": false
+        },
+        {
+          "sku": "100200325980",
+          "spec": "RTX5070Ti|U9-275HX/32G/1T",
+          "isDefault": false
+        },
+        {
+          "sku": "100335414636",
+          "spec": "RTX5070Ti|【新品】U9-290HX Plus/32G/1TB",
+          "isDefault": false
+        }
+      ],
       "screenSize": 16.0,
       "thicknessMm": 28.1,
       "weightKg": 2.7,
@@ -975,12 +1398,70 @@
         14000,
         20000
       ],
-      "priceCny": null,
+      "priceCny": 17999,
       "estimatedPriceCny": 17000,
-      "pricePointK": 17.0,
-      "priceDisplay": "约 ¥17,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "pricePointK": 18.0,
+      "priceDisplay": "¥17,999",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "京东售价",
+        "url": "https://www.kdocs.cn/l/chzEHrH90jRz",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "微星泰坦16 2025 高配版。价位段16-18k。",
+      "configs": [
+        {
+          "sku": "100226957210",
+          "spec": "泰坦16 AI 2025|U9 275HX/RTX5090",
+          "isDefault": false
+        },
+        {
+          "sku": "100192492256",
+          "spec": "泰坦16 AI 2025|U9 275HX/RTX5080",
+          "isDefault": true
+        },
+        {
+          "sku": "100175083237",
+          "spec": "泰坦16 AI 2025|U9 275HX/RTX5070Ti",
+          "isDefault": false
+        },
+        {
+          "sku": "100194076246",
+          "spec": "泰坦17 AI 2025|U9 275HX/RTX5090",
+          "isDefault": false
+        },
+        {
+          "sku": "100194076284",
+          "spec": "泰坦17 AI 2025|U9 275HX/RTX5080",
+          "isDefault": false
+        },
+        {
+          "sku": "100194076282",
+          "spec": "泰坦17 AI 2025|U9 275HX/RTX5070Ti/32GB",
+          "isDefault": false
+        },
+        {
+          "sku": "100248045801",
+          "spec": "泰坦16 Max 2026|U9 285HX/RTX5070Ti",
+          "isDefault": false
+        },
+        {
+          "sku": "100330938904",
+          "spec": "泰坦16 Max 2026|U9 285HX/RTX5080",
+          "isDefault": false
+        },
+        {
+          "sku": "100330938864",
+          "spec": "泰坦16 Max 2026|U9 285HX/RTX5090",
+          "isDefault": false
+        },
+        {
+          "sku": "100330938854",
+          "spec": "泰坦16 Max 2026|U9 290HX Plus/RTX5090/OLED屏",
+          "isDefault": false
+        }
+      ],
       "screenSize": 16.0,
       "thicknessMm": 30.0,
       "weightKg": 2.62,
@@ -1030,12 +1511,70 @@
         20000,
         30000
       ],
-      "priceCny": null,
+      "priceCny": 19999,
       "estimatedPriceCny": 25000,
-      "pricePointK": 25.0,
-      "priceDisplay": "约 ¥25,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "pricePointK": 20.0,
+      "priceDisplay": "¥19,999",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "京东售价",
+        "url": "https://www.kdocs.cn/l/chzEHrH90jRz",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "惠普HyperX/暗影精灵MAX 顶配。",
+      "configs": [
+        {
+          "sku": "100153194763",
+          "spec": "RTX5080|U9-275HX/32G/1T",
+          "isDefault": false
+        },
+        {
+          "sku": "100335414674",
+          "spec": "RTX5080|【新品】U9-290HX Plus/32G/2TB",
+          "isDefault": false
+        },
+        {
+          "sku": "100328743822",
+          "spec": "RTX5060|18英寸新品/i7-14650HX/16G",
+          "isDefault": false
+        },
+        {
+          "sku": "100243300677",
+          "spec": "RTX5060|U7-255HX/16G/1T灰",
+          "isDefault": false
+        },
+        {
+          "sku": "100149203087",
+          "spec": "RTX5090|U9-275HX/64G/2T",
+          "isDefault": true
+        },
+        {
+          "sku": "100335414678",
+          "spec": "RTX5090|【新品】U9-290HX Plus/32G/2TB",
+          "isDefault": false
+        },
+        {
+          "sku": "100332458584",
+          "spec": "RTX5070|18英寸新品/U7-270HX Plus/16g黑",
+          "isDefault": false
+        },
+        {
+          "sku": "100352562138",
+          "spec": "RTX5070|18英寸新品/U7-270HX Plus/16g灰",
+          "isDefault": false
+        },
+        {
+          "sku": "100200325980",
+          "spec": "RTX5070Ti|U9-275HX/32G/1T",
+          "isDefault": false
+        },
+        {
+          "sku": "100335414636",
+          "spec": "RTX5070Ti|【新品】U9-290HX Plus/32G/1TB",
+          "isDefault": false
+        }
+      ],
       "screenSize": 16.0,
       "thicknessMm": 29.0,
       "weightKg": 3.0,
@@ -1074,12 +1613,70 @@
         20000,
         30000
       ],
-      "priceCny": null,
+      "priceCny": 19999,
       "estimatedPriceCny": 25000,
-      "pricePointK": 25.0,
-      "priceDisplay": "约 ¥25,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "pricePointK": 20.0,
+      "priceDisplay": "¥19,999",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "京东售价",
+        "url": "https://www.kdocs.cn/l/chzEHrH90jRz",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "机械革命耀世16 Ultra 水冷版顶配。",
+      "configs": [
+        {
+          "sku": "100153194763",
+          "spec": "RTX5080|U9-275HX/32G/1T",
+          "isDefault": false
+        },
+        {
+          "sku": "100335414674",
+          "spec": "RTX5080|【新品】U9-290HX Plus/32G/2TB",
+          "isDefault": false
+        },
+        {
+          "sku": "100328743822",
+          "spec": "RTX5060|18英寸新品/i7-14650HX/16G",
+          "isDefault": false
+        },
+        {
+          "sku": "100243300677",
+          "spec": "RTX5060|U7-255HX/16G/1T灰",
+          "isDefault": false
+        },
+        {
+          "sku": "100149203087",
+          "spec": "RTX5090|U9-275HX/64G/2T",
+          "isDefault": true
+        },
+        {
+          "sku": "100335414678",
+          "spec": "RTX5090|【新品】U9-290HX Plus/32G/2TB",
+          "isDefault": false
+        },
+        {
+          "sku": "100332458584",
+          "spec": "RTX5070|18英寸新品/U7-270HX Plus/16g黑",
+          "isDefault": false
+        },
+        {
+          "sku": "100352562138",
+          "spec": "RTX5070|18英寸新品/U7-270HX Plus/16g灰",
+          "isDefault": false
+        },
+        {
+          "sku": "100200325980",
+          "spec": "RTX5070Ti|U9-275HX/32G/1T",
+          "isDefault": false
+        },
+        {
+          "sku": "100335414636",
+          "spec": "RTX5070Ti|【新品】U9-290HX Plus/32G/1TB",
+          "isDefault": false
+        }
+      ],
       "screenSize": 16.0,
       "thicknessMm": 28.5,
       "weightKg": 2.85,
@@ -1125,12 +1722,70 @@
         20000,
         30000
       ],
-      "priceCny": null,
+      "priceCny": 19999,
       "estimatedPriceCny": 25000,
-      "pricePointK": 25.0,
-      "priceDisplay": "约 ¥25,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "pricePointK": 20.0,
+      "priceDisplay": "¥19,999",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "京东售价",
+        "url": "https://www.kdocs.cn/l/chzEHrH90jRz",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "机械革命蛟龙16 Ultra 水冷版顶配。",
+      "configs": [
+        {
+          "sku": "100189648192",
+          "spec": "RTX5090|R9-9955HX3D/64G/2T",
+          "isDefault": true
+        },
+        {
+          "sku": "100150214139",
+          "spec": "RTX5080|R9-9955HX/32G/1T",
+          "isDefault": false
+        },
+        {
+          "sku": "100254487990",
+          "spec": "RTX5070Ti|R9-9955HX3D/32G/1T/MiniLED",
+          "isDefault": false
+        },
+        {
+          "sku": "100246051633",
+          "spec": "RTX5070|【苍龙18新品】R9-9955HX/16G/1T",
+          "isDefault": false
+        },
+        {
+          "sku": "100328328216",
+          "spec": "RTX5060|【苍龙18新品】R9-8945HX/16G/灰",
+          "isDefault": false
+        },
+        {
+          "sku": "100246051655",
+          "spec": "RTX5060|【苍龙18新品】R9-8945HX/16G/黑",
+          "isDefault": false
+        },
+        {
+          "sku": "100327580230",
+          "spec": "RTX5060|【苍龙16新品】R9-8945HX/16G/1T",
+          "isDefault": false
+        },
+        {
+          "sku": "100327580188",
+          "spec": "RTX5060|【苍龙16新品】R9-9955HX/16G/1T",
+          "isDefault": false
+        },
+        {
+          "sku": "100350073796",
+          "spec": "RTX5070（12G）|【苍龙18新品】R9-9955HX/16G/1T",
+          "isDefault": false
+        },
+        {
+          "sku": "100262349431",
+          "spec": "RTX5070（12G）|【苍龙16新品】R9-9955HX/16G/1T",
+          "isDefault": false
+        }
+      ],
       "screenSize": 16.0,
       "thicknessMm": 28.5,
       "weightKg": 2.85,
@@ -1176,12 +1831,70 @@
         20000,
         30000
       ],
-      "priceCny": null,
+      "priceCny": 19999,
       "estimatedPriceCny": 25000,
-      "pricePointK": 25.0,
-      "priceDisplay": "约 ¥25,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "pricePointK": 20.0,
+      "priceDisplay": "¥19,999",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "京东售价",
+        "url": "https://www.kdocs.cn/l/chzEHrH90jRz",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "微星泰坦16 2025 顶配。价位段18-22k。",
+      "configs": [
+        {
+          "sku": "100226957210",
+          "spec": "泰坦16 AI 2025|U9 275HX/RTX5090",
+          "isDefault": true
+        },
+        {
+          "sku": "100192492256",
+          "spec": "泰坦16 AI 2025|U9 275HX/RTX5080",
+          "isDefault": false
+        },
+        {
+          "sku": "100175083237",
+          "spec": "泰坦16 AI 2025|U9 275HX/RTX5070Ti",
+          "isDefault": false
+        },
+        {
+          "sku": "100194076246",
+          "spec": "泰坦17 AI 2025|U9 275HX/RTX5090",
+          "isDefault": false
+        },
+        {
+          "sku": "100194076284",
+          "spec": "泰坦17 AI 2025|U9 275HX/RTX5080",
+          "isDefault": false
+        },
+        {
+          "sku": "100194076282",
+          "spec": "泰坦17 AI 2025|U9 275HX/RTX5070Ti/32GB",
+          "isDefault": false
+        },
+        {
+          "sku": "100248045801",
+          "spec": "泰坦16 Max 2026|U9 285HX/RTX5070Ti",
+          "isDefault": false
+        },
+        {
+          "sku": "100330938904",
+          "spec": "泰坦16 Max 2026|U9 285HX/RTX5080",
+          "isDefault": false
+        },
+        {
+          "sku": "100330938864",
+          "spec": "泰坦16 Max 2026|U9 285HX/RTX5090",
+          "isDefault": false
+        },
+        {
+          "sku": "100330938854",
+          "spec": "泰坦16 Max 2026|U9 290HX Plus/RTX5090/OLED屏",
+          "isDefault": false
+        }
+      ],
       "screenSize": 16.0,
       "thicknessMm": 30.0,
       "weightKg": 2.62,
@@ -1229,12 +1942,30 @@
         20000,
         30000
       ],
-      "priceCny": null,
+      "priceCny": 22999,
       "estimatedPriceCny": 25000,
-      "pricePointK": 25.0,
-      "priceDisplay": "约 ¥25,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "pricePointK": 23.0,
+      "priceDisplay": "¥22,999",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "京东售价",
+        "url": "https://www.kdocs.cn/l/chzEHrH90jRz",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "ROG枪神9/锐龙版 顶配。",
+      "configs": [
+        {
+          "sku": "100141961159",
+          "spec": "U9 275HX RTX5080",
+          "isDefault": true
+        },
+        {
+          "sku": "100141935165",
+          "spec": "U9 275HX RTX5090",
+          "isDefault": false
+        }
+      ],
       "screenSize": 16.0,
       "thicknessMm": 31.0,
       "weightKg": 2.66,
@@ -1278,12 +2009,30 @@
         20000,
         30000
       ],
-      "priceCny": null,
+      "priceCny": 24999,
       "estimatedPriceCny": 25000,
       "pricePointK": 25.0,
-      "priceDisplay": "约 ¥25,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "priceDisplay": "¥24,999",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "京东售价",
+        "url": "https://www.kdocs.cn/l/chzEHrH90jRz",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "ROG枪神9 Plus/锐龙版。18寸大屏。",
+      "configs": [
+        {
+          "sku": "100214660454",
+          "spec": "U9 275HX RTX5060",
+          "isDefault": false
+        },
+        {
+          "sku": "100141961161",
+          "spec": "U9 275HX RTX5080",
+          "isDefault": true
+        }
+      ],
       "screenSize": 18.0,
       "thicknessMm": 32.0,
       "weightKg": 3.48,
@@ -1326,12 +2075,19 @@
         20000,
         30000
       ],
-      "priceCny": null,
+      "priceCny": 22999,
       "estimatedPriceCny": 25000,
-      "pricePointK": 25.0,
-      "priceDisplay": "约 ¥25,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "pricePointK": 23.0,
+      "priceDisplay": "¥22,999",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "IT之家国补价",
+        "url": "https://www.ithome.com/0/839/960.htm",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "微星雷影18 2025。18寸大屏，国补价¥22,999。",
+      "configs": null,
       "screenSize": 18.0,
       "thicknessMm": 32.0,
       "weightKg": 3.5,
@@ -1374,12 +2130,70 @@
         30000,
         40000
       ],
-      "priceCny": null,
+      "priceCny": 21999,
       "estimatedPriceCny": 35000,
-      "pricePointK": 35.0,
-      "priceDisplay": "约 ¥35,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "pricePointK": 22.0,
+      "priceDisplay": "¥21,999",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "京东售价",
+        "url": "https://www.kdocs.cn/l/chzEHrH90jRz",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "机械革命耀世16 Ultra 水冷版旗舰。",
+      "configs": [
+        {
+          "sku": "100153194763",
+          "spec": "RTX5080|U9-275HX/32G/1T",
+          "isDefault": false
+        },
+        {
+          "sku": "100335414674",
+          "spec": "RTX5080|【新品】U9-290HX Plus/32G/2TB",
+          "isDefault": false
+        },
+        {
+          "sku": "100328743822",
+          "spec": "RTX5060|18英寸新品/i7-14650HX/16G",
+          "isDefault": false
+        },
+        {
+          "sku": "100243300677",
+          "spec": "RTX5060|U7-255HX/16G/1T灰",
+          "isDefault": false
+        },
+        {
+          "sku": "100149203087",
+          "spec": "RTX5090|U9-275HX/64G/2T",
+          "isDefault": true
+        },
+        {
+          "sku": "100335414678",
+          "spec": "RTX5090|【新品】U9-290HX Plus/32G/2TB",
+          "isDefault": false
+        },
+        {
+          "sku": "100332458584",
+          "spec": "RTX5070|18英寸新品/U7-270HX Plus/16g黑",
+          "isDefault": false
+        },
+        {
+          "sku": "100352562138",
+          "spec": "RTX5070|18英寸新品/U7-270HX Plus/16g灰",
+          "isDefault": false
+        },
+        {
+          "sku": "100200325980",
+          "spec": "RTX5070Ti|U9-275HX/32G/1T",
+          "isDefault": false
+        },
+        {
+          "sku": "100335414636",
+          "spec": "RTX5070Ti|【新品】U9-290HX Plus/32G/1TB",
+          "isDefault": false
+        }
+      ],
       "screenSize": 16.0,
       "thicknessMm": 28.5,
       "weightKg": 2.85,
@@ -1425,12 +2239,70 @@
         30000,
         40000
       ],
-      "priceCny": null,
+      "priceCny": 21999,
       "estimatedPriceCny": 35000,
-      "pricePointK": 35.0,
-      "priceDisplay": "约 ¥35,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "pricePointK": 22.0,
+      "priceDisplay": "¥21,999",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "京东售价",
+        "url": "https://www.kdocs.cn/l/chzEHrH90jRz",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "机械革命蛟龙16 Ultra 水冷版旗舰。",
+      "configs": [
+        {
+          "sku": "100189648192",
+          "spec": "RTX5090|R9-9955HX3D/64G/2T",
+          "isDefault": true
+        },
+        {
+          "sku": "100150214139",
+          "spec": "RTX5080|R9-9955HX/32G/1T",
+          "isDefault": false
+        },
+        {
+          "sku": "100254487990",
+          "spec": "RTX5070Ti|R9-9955HX3D/32G/1T/MiniLED",
+          "isDefault": false
+        },
+        {
+          "sku": "100246051633",
+          "spec": "RTX5070|【苍龙18新品】R9-9955HX/16G/1T",
+          "isDefault": false
+        },
+        {
+          "sku": "100328328216",
+          "spec": "RTX5060|【苍龙18新品】R9-8945HX/16G/灰",
+          "isDefault": false
+        },
+        {
+          "sku": "100246051655",
+          "spec": "RTX5060|【苍龙18新品】R9-8945HX/16G/黑",
+          "isDefault": false
+        },
+        {
+          "sku": "100327580230",
+          "spec": "RTX5060|【苍龙16新品】R9-8945HX/16G/1T",
+          "isDefault": false
+        },
+        {
+          "sku": "100327580188",
+          "spec": "RTX5060|【苍龙16新品】R9-9955HX/16G/1T",
+          "isDefault": false
+        },
+        {
+          "sku": "100350073796",
+          "spec": "RTX5070（12G）|【苍龙18新品】R9-9955HX/16G/1T",
+          "isDefault": false
+        },
+        {
+          "sku": "100262349431",
+          "spec": "RTX5070（12G）|【苍龙16新品】R9-9955HX/16G/1T",
+          "isDefault": false
+        }
+      ],
       "screenSize": 16.0,
       "thicknessMm": 28.5,
       "weightKg": 2.85,
@@ -1476,12 +2348,30 @@
         30000,
         40000
       ],
-      "priceCny": null,
+      "priceCny": 21999,
       "estimatedPriceCny": 35000,
-      "pricePointK": 35.0,
-      "priceDisplay": "约 ¥35,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "pricePointK": 22.0,
+      "priceDisplay": "¥21,999",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "京东售价",
+        "url": "https://www.kdocs.cn/l/chzEHrH90jRz",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "ROG枪神9/锐龙版 高配。",
+      "configs": [
+        {
+          "sku": "100141961159",
+          "spec": "U9 275HX RTX5080",
+          "isDefault": false
+        },
+        {
+          "sku": "100141935165",
+          "spec": "U9 275HX RTX5090",
+          "isDefault": true
+        }
+      ],
       "screenSize": 16.0,
       "thicknessMm": 31.0,
       "weightKg": 2.66,
@@ -1525,12 +2415,19 @@
         30000,
         40000
       ],
-      "priceCny": null,
+      "priceCny": 19999,
       "estimatedPriceCny": 35000,
-      "pricePointK": 35.0,
-      "priceDisplay": "约 ¥35,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "pricePointK": 20.0,
+      "priceDisplay": "¥19,999",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "京东售价",
+        "url": "https://www.kdocs.cn/l/chzEHrH90jRz",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "联想拯救者Y9000P 2025 至尊版。价位段18-22k。",
+      "configs": null,
       "screenSize": 16.0,
       "thicknessMm": 27.0,
       "weightKg": 2.6,
@@ -1578,12 +2475,19 @@
         30000,
         40000
       ],
-      "priceCny": null,
+      "priceCny": 26999,
       "estimatedPriceCny": 35000,
-      "pricePointK": 35.0,
-      "priceDisplay": "约 ¥35,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "pricePointK": 27.0,
+      "priceDisplay": "¥26,999",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "IT之家国补价",
+        "url": "https://m.ithome.com/html/854294.htm",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "微星泰坦18 Pro 2025/锐龙版。18寸旗舰。",
+      "configs": null,
       "screenSize": 18.0,
       "thicknessMm": 32.0,
       "weightKg": 3.57,
@@ -1628,12 +2532,19 @@
         30000,
         40000
       ],
-      "priceCny": null,
+      "priceCny": 34999,
       "estimatedPriceCny": 35000,
       "pricePointK": 35.0,
-      "priceDisplay": "约 ¥35,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "priceDisplay": "¥34,999",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "IT之家首发价",
+        "url": "https://www.kdocs.cn/l/chzEHrH90jRz",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "微星泰坦18 Pro 2025 顶配/水冷。",
+      "configs": null,
       "screenSize": 18.0,
       "thicknessMm": 32.0,
       "weightKg": 3.57,
@@ -1678,12 +2589,19 @@
         30000,
         40000
       ],
-      "priceCny": null,
+      "priceCny": 39999,
       "estimatedPriceCny": 35000,
-      "pricePointK": 35.0,
-      "priceDisplay": "约 ¥35,000",
-      "priceBasis": "guide_range_midpoint",
-      "priceNote": "源表格仅提供价位段；这里用区间中值定位。",
+      "pricePointK": 40.0,
+      "priceDisplay": "¥39,999",
+      "priceBasis": "published",
+      "priceSource": {
+        "name": "海外售价参考",
+        "url": "https://www.kdocs.cn/l/chzEHrH90jRz",
+        "confidence": "medium",
+        "method": "price_database"
+      },
+      "priceNote": "联想Legion 9 18IAX10。海外版，无国行价格。",
+      "configs": null,
       "screenSize": 18.0,
       "thicknessMm": 28.0,
       "weightKg": 3.5,

@@ -2,7 +2,17 @@
 
 一个给“小白买游戏本”使用的静态选购页面。它把《小白必读》购机指南里“甜品砖头”和“高端砖头”两个分区的机型整理成可筛选、可比较、可直接发给家人看的网页。
 
-页面地址部署后会是 GitHub Pages 链接；本地也可以直接用静态服务器打开。
+在线页面：
+
+```text
+https://wychuang.github.io/gaokao-laptop-guide/
+```
+
+仓库地址：
+
+```text
+https://github.com/wychuang/gaokao-laptop-guide
+```
 
 ## 功能
 
@@ -72,11 +82,14 @@ npm test
 .github/workflows/pages.yml
 ```
 
-首次推送到 GitHub 后，在仓库 Settings -> Pages 中把 Source 设置为 **GitHub Actions**。之后每次推送 `main` 分支都会自动发布。
+当前仓库已经启用 GitHub Pages。之后每次推送 `main` 分支都会自动发布到：
+
+```text
+https://wychuang.github.io/gaokao-laptop-guide/
+```
 
 ## 仓库约定
 
 源 `.et` 表格默认不提交到 GitHub。它体积较大，而且是上游指南源文件；公开仓库只提交页面所需的结构化数据 `data/laptops.json`。
 
 更多 git 安排见 [GIT_PLAN.md](GIT_PLAN.md)。
-

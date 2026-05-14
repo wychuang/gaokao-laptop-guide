@@ -2,6 +2,11 @@
   "name": "gaokao-laptop-guide",
   "version": "1.0.0",
   "description": "A static visual guide for comparing gaming laptops from a buyer-friendly spreadsheet.",
+  "homepage": "https://wychuang.github.io/gaokao-laptop-guide/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wychuang/gaokao-laptop-guide.git"
+  },
   "private": true,
   "directories": {
     "test": "tests"

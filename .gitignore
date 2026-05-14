@@ -1,0 +1,11 @@
+.venv/
+node_modules/
+__pycache__/
+*.pyc
+dist/
+playwright-report/
+test-results/
+qa-*.png
+.DS_Store
+Thumbs.db
+*.et

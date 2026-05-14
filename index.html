@@ -1,0 +1,991 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:,">
+    <title>高考后游戏本选购可视化</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --paper: #f4f6f1;
+        --panel: #ffffff;
+        --ink: #171a1f;
+        --muted: #66707b;
+        --line: #d5dbd2;
+        --cobalt: #2456d6;
+        --tomato: #d54f35;
+        --mint: #168f70;
+        --gold: #d99c24;
+        --violet: #6b55bc;
+        --shadow: 0 18px 46px rgba(28, 36, 44, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Bahnschrift", "Microsoft YaHei UI", "Noto Sans CJK SC", sans-serif;
+        letter-spacing: 0;
+      }
+
+      button,
+      input,
+      select {
+        font: inherit;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .shell {
+        width: min(1400px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 24px 0 48px;
+      }
+
+      .topbar {
+        display: grid;
+        grid-template-columns: minmax(260px, 1.1fr) minmax(280px, 0.9fr);
+        gap: 18px;
+        align-items: end;
+        padding: 20px 0 18px;
+        border-bottom: 2px solid var(--ink);
+      }
+
+      .kicker {
+        margin: 0 0 8px;
+        color: var(--tomato);
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      h1 {
+        margin: 0;
+        font-family: "Microsoft YaHei UI", "Noto Serif CJK SC", serif;
+        font-size: 40px;
+        line-height: 1.12;
+        font-weight: 900;
+      }
+
+      .topnote {
+        margin: 12px 0 0;
+        max-width: 780px;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      .summary {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .metric {
+        min-height: 92px;
+        padding: 13px 14px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+
+      .metric strong {
+        display: block;
+        font-size: 28px;
+        line-height: 1.1;
+      }
+
+      .metric span {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .toolbar {
+        margin: 18px 0;
+        padding: 14px;
+        display: grid;
+        grid-template-columns: minmax(270px, 1.2fr) repeat(4, minmax(130px, 0.55fr)) minmax(190px, 0.8fr);
+        gap: 10px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+
+      .segmented {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        min-height: 42px;
+        border: 1px solid var(--ink);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .segmented button {
+        border: 0;
+        border-right: 1px solid var(--ink);
+        background: #f9fbf8;
+        color: var(--ink);
+        cursor: pointer;
+        font-weight: 800;
+      }
+
+      .segmented button:last-child {
+        border-right: 0;
+      }
+
+      .segmented button.active {
+        background: var(--ink);
+        color: #fff;
+      }
+
+      .field {
+        position: relative;
+        min-width: 0;
+      }
+
+      .field span {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      select,
+      input[type="search"] {
+        width: 100%;
+        min-height: 42px;
+        padding: 0 12px;
+        color: var(--ink);
+        background: #fbfcfa;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        outline: none;
+      }
+
+      select:focus,
+      input[type="search"]:focus {
+        border-color: var(--cobalt);
+        box-shadow: 0 0 0 3px rgba(36, 86, 214, 0.15);
+      }
+
+      .switches {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .switch {
+        min-height: 42px;
+        padding: 9px 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fbfcfa;
+        color: var(--ink);
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .switch input {
+        accent-color: var(--cobalt);
+      }
+
+      .chart-zone {
+        position: relative;
+        margin-top: 18px;
+        background: var(--panel);
+        border: 2px solid var(--ink);
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .chart-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .chart-title h2 {
+        margin: 0;
+        font-size: 18px;
+      }
+
+      .legend {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .legend i {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin-right: 5px;
+        border-radius: 50%;
+      }
+
+      .chart-wrap {
+        width: 100%;
+        min-height: 520px;
+        overflow-x: auto;
+      }
+
+      svg {
+        display: block;
+        min-width: 920px;
+        width: 100%;
+        height: 520px;
+      }
+
+      .axis text,
+      .grid text {
+        fill: var(--muted);
+        font-size: 13px;
+      }
+
+      .axis-line {
+        stroke: var(--ink);
+        stroke-width: 1.5;
+      }
+
+      .grid-line {
+        stroke: #e2e6df;
+        stroke-width: 1;
+      }
+
+      .point circle {
+        stroke: #fff;
+        stroke-width: 3;
+        cursor: pointer;
+        transition: r 0.15s ease, stroke-width 0.15s ease;
+      }
+
+      .point text {
+        fill: var(--ink);
+        font-size: 12px;
+        font-weight: 800;
+        pointer-events: none;
+      }
+
+      .point:hover circle,
+      .point.active circle {
+        r: 13;
+        stroke-width: 4;
+      }
+
+      .hover-card {
+        position: absolute;
+        z-index: 5;
+        width: 286px;
+        min-height: 220px;
+        display: none;
+        pointer-events: none;
+        background: #fff;
+        border: 2px solid var(--ink);
+        border-radius: 8px;
+        box-shadow: 0 16px 42px rgba(23, 26, 31, 0.22);
+        overflow: hidden;
+      }
+
+      .hover-card.show {
+        display: block;
+      }
+
+      .hover-card img {
+        width: 100%;
+        height: 142px;
+        object-fit: cover;
+        background: #eef1ec;
+      }
+
+      .hover-body {
+        padding: 10px 12px 12px;
+      }
+
+      .hover-body strong {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 15px;
+      }
+
+      .hover-body p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.55;
+        font-size: 12px;
+      }
+
+      .cards-head {
+        margin: 28px 0 12px;
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        align-items: end;
+      }
+
+      .cards-head h2 {
+        margin: 0;
+        font-size: 22px;
+      }
+
+      .sorter {
+        width: min(220px, 100%);
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .card {
+        display: grid;
+        grid-template-rows: 190px auto;
+        min-height: 520px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .card-media {
+        position: relative;
+        background: #e9eee8;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .card-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .tag-row {
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        top: 10px;
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+
+      .tag {
+        padding: 5px 8px;
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid rgba(23, 26, 31, 0.25);
+        border-radius: 7px;
+        color: var(--ink);
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .card-body {
+        padding: 14px;
+      }
+
+      .brandline {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .card h3 {
+        margin: 8px 0 12px;
+        font-size: 20px;
+        line-height: 1.35;
+      }
+
+      .specs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+
+      .spec {
+        min-height: 56px;
+        padding: 8px;
+        border: 1px solid #e1e5dd;
+        border-radius: 8px;
+        background: #fbfcfa;
+      }
+
+      .spec b {
+        display: block;
+        color: var(--muted);
+        font-size: 11px;
+        margin-bottom: 4px;
+      }
+
+      .spec span {
+        display: block;
+        line-height: 1.35;
+        font-size: 13px;
+        font-weight: 800;
+        overflow-wrap: anywhere;
+      }
+
+      .notes {
+        display: grid;
+        gap: 9px;
+      }
+
+      .note-block {
+        border-left: 4px solid var(--line);
+        padding-left: 9px;
+      }
+
+      .note-block.good {
+        border-left-color: var(--mint);
+      }
+
+      .note-block.watch {
+        border-left-color: var(--gold);
+      }
+
+      .note-block.bad {
+        border-left-color: var(--tomato);
+      }
+
+      .note-block b {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 12px;
+      }
+
+      .note-block p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.55;
+        font-size: 13px;
+      }
+
+      .actions {
+        margin-top: 14px;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .action {
+        min-height: 36px;
+        padding: 8px 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--ink);
+        border-radius: 8px;
+        background: var(--ink);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 900;
+        text-decoration: none;
+      }
+
+      .action.secondary {
+        background: #fff;
+        color: var(--ink);
+      }
+
+      .empty {
+        padding: 26px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: var(--muted);
+      }
+
+      .sources {
+        margin-top: 28px;
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.7;
+      }
+
+      .sources details {
+        margin-top: 8px;
+      }
+
+      .sources a {
+        color: var(--cobalt);
+      }
+
+      .placeholder {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        place-items: center;
+        padding: 18px;
+        background:
+          linear-gradient(135deg, rgba(36, 86, 214, 0.12), transparent 42%),
+          linear-gradient(315deg, rgba(213, 79, 53, 0.14), transparent 48%),
+          #eef2ed;
+        color: var(--muted);
+        text-align: center;
+        font-weight: 900;
+      }
+
+      @media (max-width: 1080px) {
+        .topbar,
+        .toolbar {
+          grid-template-columns: 1fr;
+        }
+
+        .cards {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 720px) {
+        .shell {
+          width: min(100% - 18px, 1400px);
+          padding-top: 10px;
+        }
+
+        h1 {
+          font-size: 30px;
+        }
+
+        .summary,
+        .cards {
+          grid-template-columns: 1fr;
+        }
+
+        .switches,
+        .specs {
+          grid-template-columns: 1fr;
+        }
+
+        .chart-title,
+        .cards-head {
+          align-items: stretch;
+          flex-direction: column;
+        }
+
+        .card {
+          grid-template-rows: 210px auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="topbar">
+        <div>
+          <p class="kicker">甜品砖头 / 高端砖头 / 2026-05-08 指南版</p>
+          <h1>高考后游戏本选购可视化</h1>
+          <p class="topnote" id="price-note">价位来自源指南价位段，未计算平台神券、国补、地区仓和临时促销。</p>
+        </div>
+        <div class="summary" aria-label="数据概览">
+          <div class="metric">
+            <strong id="metric-count">0</strong>
+            <span>当前机型</span>
+          </div>
+          <div class="metric">
+            <strong id="metric-price">-</strong>
+            <span>参考价位</span>
+          </div>
+          <div class="metric">
+            <strong id="metric-light">-</strong>
+            <span>最轻机型</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="toolbar" aria-label="筛选器">
+        <div class="field">
+          <span>类别</span>
+          <div class="segmented" role="group" aria-label="类别">
+            <button type="button" class="active" data-category="all">全部</button>
+            <button type="button" data-category="甜品砖头">甜品砖头</button>
+            <button type="button" data-category="高端砖头">高端砖头</button>
+          </div>
+        </div>
+        <label class="field">
+          <span>价位</span>
+          <select id="price-filter"></select>
+        </label>
+        <label class="field">
+          <span>品牌</span>
+          <select id="brand-filter"></select>
+        </label>
+        <label class="field">
+          <span>显卡</span>
+          <select id="gpu-filter"></select>
+        </label>
+        <label class="field">
+          <span>屏幕</span>
+          <select id="screen-filter"></select>
+        </label>
+        <div class="field">
+          <span>偏好</span>
+          <div class="switches">
+            <label class="switch"><input type="checkbox" id="memory-filter">32G+</label>
+            <label class="switch"><input type="checkbox" id="oled-filter">避开 OLED</label>
+          </div>
+        </div>
+        <label class="field">
+          <span>搜索</span>
+          <input id="search-filter" type="search" placeholder="品牌 / 型号 / CPU / 关键词">
+        </label>
+      </section>
+
+      <section class="chart-zone">
+        <div class="chart-title">
+          <h2>价位 x 重量坐标图</h2>
+          <div class="legend">
+            <span><i style="background: var(--cobalt)"></i>甜品砖头</span>
+            <span><i style="background: var(--tomato)"></i>高端砖头</span>
+            <span>点越大，机身越厚</span>
+          </div>
+        </div>
+        <div class="chart-wrap" id="chart-wrap">
+          <svg id="chart" viewBox="0 0 1100 520" role="img" aria-label="价位和重量坐标图"></svg>
+        </div>
+        <div class="hover-card" id="hover-card"></div>
+      </section>
+
+      <section>
+        <div class="cards-head">
+          <h2>机型卡片</h2>
+          <label class="field sorter">
+            <span>排序</span>
+            <select id="sorter">
+              <option value="guide">指南顺序</option>
+              <option value="price">价位从低到高</option>
+              <option value="weight">重量从轻到重</option>
+              <option value="thickness">厚度从薄到厚</option>
+            </select>
+          </label>
+        </div>
+        <div class="cards" id="cards"></div>
+      </section>
+
+      <footer class="sources">
+        <div id="source-line"></div>
+        <details>
+          <summary>外观图来源</summary>
+          <div id="source-list"></div>
+        </details>
+      </footer>
+    </main>
+
+    <script>
+      const state = {
+        category: "all",
+        price: "all",
+        brand: "all",
+        gpu: "all",
+        screen: "all",
+        memory32: false,
+        avoidOled: false,
+        search: "",
+        sort: "guide"
+      };
+
+      const els = {
+        chart: document.querySelector("#chart"),
+        cards: document.querySelector("#cards"),
+        hover: document.querySelector("#hover-card"),
+        price: document.querySelector("#price-filter"),
+        brand: document.querySelector("#brand-filter"),
+        gpu: document.querySelector("#gpu-filter"),
+        screen: document.querySelector("#screen-filter"),
+        memory: document.querySelector("#memory-filter"),
+        oled: document.querySelector("#oled-filter"),
+        search: document.querySelector("#search-filter"),
+        sorter: document.querySelector("#sorter"),
+        count: document.querySelector("#metric-count"),
+        priceMetric: document.querySelector("#metric-price"),
+        lightMetric: document.querySelector("#metric-light"),
+        sourceLine: document.querySelector("#source-line"),
+        sourceList: document.querySelector("#source-list"),
+        priceNote: document.querySelector("#price-note")
+      };
+
+      let dataset = { items: [] };
+
+      const colorFor = (item) => item.category === "甜品砖头" ? "var(--cobalt)" : "var(--tomato)";
+      const fmt = (value, digits = 1) => Number.isFinite(value) ? Number(value).toFixed(digits) : "-";
+      const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "\"": "&quot;",
+        "'": "&#39;"
+      })[char]);
+
+      function unique(items, getter) {
+        return [...new Set(items.map(getter).filter(Boolean))];
+      }
+
+      function optionMarkup(values, labelAll) {
+        return `<option value="all">${labelAll}</option>` + values.map((value) => (
+          `<option value="${escapeHtml(value)}">${escapeHtml(value)}</option>`
+        )).join("");
+      }
+
+      function setupControls() {
+        const items = dataset.items;
+        els.price.innerHTML = optionMarkup(unique(items, (item) => item.priceLabel), "全部价位");
+        els.brand.innerHTML = optionMarkup(unique(items, (item) => item.brand), "全部品牌");
+        els.gpu.innerHTML = optionMarkup(unique(items, (item) => item.gpu), "全部显卡");
+        els.screen.innerHTML = optionMarkup(unique(items, (item) => item.screenSize ? `${item.screenSize} 英寸` : ""), "全部尺寸");
+
+        document.querySelectorAll("[data-category]").forEach((button) => {
+          button.addEventListener("click", () => {
+            document.querySelectorAll("[data-category]").forEach((node) => node.classList.remove("active"));
+            button.classList.add("active");
+            state.category = button.dataset.category;
+            render();
+          });
+        });
+
+        els.price.addEventListener("change", () => { state.price = els.price.value; render(); });
+        els.brand.addEventListener("change", () => { state.brand = els.brand.value; render(); });
+        els.gpu.addEventListener("change", () => { state.gpu = els.gpu.value; render(); });
+        els.screen.addEventListener("change", () => { state.screen = els.screen.value; render(); });
+        els.memory.addEventListener("change", () => { state.memory32 = els.memory.checked; render(); });
+        els.oled.addEventListener("change", () => { state.avoidOled = els.oled.checked; render(); });
+        els.search.addEventListener("input", () => { state.search = els.search.value.trim().toLowerCase(); render(); });
+        els.sorter.addEventListener("change", () => { state.sort = els.sorter.value; render(); });
+      }
+
+      function filteredItems() {
+        const term = state.search;
+        return dataset.items.filter((item) => {
+          const haystack = [
+            item.category,
+            item.brand,
+            item.model,
+            item.cpu,
+            item.gpu,
+            item.display,
+            item.memory,
+            item.storage,
+            ...(item.pros || []),
+            ...(item.neutral || []),
+            ...(item.cons || [])
+          ].join(" ").toLowerCase();
+          const memoryNumber = Number((item.memory || "").match(/\d+(?=G)/)?.[0] || 0);
+          return (state.category === "all" || item.category === state.category)
+            && (state.price === "all" || item.priceLabel === state.price)
+            && (state.brand === "all" || item.brand === state.brand)
+            && (state.gpu === "all" || item.gpu === state.gpu)
+            && (state.screen === "all" || `${item.screenSize} 英寸` === state.screen)
+            && (!state.memory32 || memoryNumber >= 32)
+            && (!state.avoidOled || !String(item.display).toLowerCase().includes("oled"))
+            && (!term || haystack.includes(term));
+        }).sort((a, b) => {
+          if (state.sort === "price") return a.priceMidK - b.priceMidK;
+          if (state.sort === "weight") return (a.weightKg || 99) - (b.weightKg || 99);
+          if (state.sort === "thickness") return (a.thicknessMm || 99) - (b.thicknessMm || 99);
+          return dataset.items.indexOf(a) - dataset.items.indexOf(b);
+        });
+      }
+
+      function updateMetrics(items) {
+        els.count.textContent = items.length;
+        if (!items.length) {
+          els.priceMetric.textContent = "-";
+          els.lightMetric.textContent = "-";
+          return;
+        }
+        const min = Math.min(...items.map((item) => item.priceMinK));
+        const max = Math.max(...items.map((item) => item.priceMaxK));
+        const light = items.reduce((best, item) => (item.weightKg || 99) < (best.weightKg || 99) ? item : best, items[0]);
+        els.priceMetric.textContent = `${min}-${max}k`;
+        els.lightMetric.textContent = `${fmt(light.weightKg, 2)}kg`;
+      }
+
+      function renderChart(items) {
+        const width = 1100;
+        const height = 520;
+        const margin = { left: 72, right: 42, top: 42, bottom: 66 };
+        const plotW = width - margin.left - margin.right;
+        const plotH = height - margin.top - margin.bottom;
+        const prices = dataset.items.map((item) => item.priceMidK);
+        const weights = dataset.items.map((item) => item.weightKg).filter(Number.isFinite);
+        const xMin = Math.floor(Math.min(...prices) - 1);
+        const xMax = Math.ceil(Math.max(...prices) + 1);
+        const yMin = Math.max(2.2, Math.floor((Math.min(...weights) - 0.1) * 10) / 10);
+        const yMax = Math.ceil((Math.max(...weights) + 0.1) * 10) / 10;
+        const x = (value) => margin.left + ((value - xMin) / (xMax - xMin)) * plotW;
+        const y = (value) => margin.top + ((value - yMin) / (yMax - yMin)) * plotH;
+        const thicknesses = dataset.items.map((item) => item.thicknessMm).filter(Number.isFinite);
+        const tMin = Math.min(...thicknesses);
+        const tMax = Math.max(...thicknesses);
+        const r = (value) => 7 + (((value || tMin) - tMin) / Math.max(1, tMax - tMin)) * 6;
+        const priceTicks = [10, 12, 14, 16, 20, 25, 30, 35, 40].filter((tick) => tick >= xMin && tick <= xMax);
+        const weightTicks = [];
+        for (let tick = Math.ceil(yMin * 10) / 10; tick <= yMax + 0.01; tick += 0.2) {
+          weightTicks.push(Number(tick.toFixed(1)));
+        }
+
+        const grid = [
+          ...priceTicks.map((tick) => `<line class="grid-line" x1="${x(tick)}" x2="${x(tick)}" y1="${margin.top}" y2="${height - margin.bottom}"></line><text x="${x(tick)}" y="${height - 24}" text-anchor="middle">${tick}k</text>`),
+          ...weightTicks.map((tick) => `<line class="grid-line" x1="${margin.left}" x2="${width - margin.right}" y1="${y(tick)}" y2="${y(tick)}"></line><text x="${margin.left - 12}" y="${y(tick) + 4}" text-anchor="end">${tick}</text>`)
+        ].join("");
+
+        const points = items.map((item, index) => {
+          const jitterX = ((index % 5) - 2) * 8;
+          const jitterY = ((index % 3) - 1) * 6;
+          const cx = x(item.priceMidK) + jitterX;
+          const cy = y(item.weightKg || yMax) + jitterY;
+          const gpuStroke = item.gpu.includes("5090") ? "var(--violet)" : item.gpu.includes("5080") ? "var(--gold)" : "var(--ink)";
+          return `<g class="point" data-id="${escapeHtml(item.id)}" transform="translate(${cx}, ${cy})">
+            <circle r="${r(item.thicknessMm)}" fill="${colorFor(item)}" stroke="${gpuStroke}"></circle>
+            <text x="13" y="-10">${escapeHtml(item.priceLabel)}</text>
+          </g>`;
+        }).join("");
+
+        els.chart.innerHTML = `
+          <rect x="0" y="0" width="${width}" height="${height}" fill="#fff"></rect>
+          <g class="grid">${grid}</g>
+          <line class="axis-line" x1="${margin.left}" x2="${width - margin.right}" y1="${height - margin.bottom}" y2="${height - margin.bottom}"></line>
+          <line class="axis-line" x1="${margin.left}" x2="${margin.left}" y1="${margin.top}" y2="${height - margin.bottom}"></line>
+          <g class="axis">
+            <text x="${width / 2}" y="${height - 8}" text-anchor="middle">参考价位，人民币千元</text>
+            <text x="20" y="${height / 2}" transform="rotate(-90 20 ${height / 2})" text-anchor="middle">重量 kg</text>
+          </g>
+          ${points}
+        `;
+
+        els.chart.querySelectorAll(".point").forEach((node) => {
+          const item = items.find((entry) => entry.id === node.dataset.id);
+          node.addEventListener("mouseenter", (event) => showHover(item, event));
+          node.addEventListener("mousemove", (event) => moveHover(event));
+          node.addEventListener("mouseleave", hideHover);
+        });
+      }
+
+      function showHover(item, event) {
+        const image = item.image
+          ? `<img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.brand + item.model)}">`
+          : `<div class="placeholder">${escapeHtml(item.brand)}<br>${escapeHtml(item.model)}</div>`;
+        els.hover.innerHTML = `${image}<div class="hover-body">
+          <strong>${escapeHtml(item.brand)} ${escapeHtml(item.model)}</strong>
+          <p>${escapeHtml(item.priceLabel)} / ${escapeHtml(item.gpu)} / ${fmt(item.weightKg, 2)}kg / ${fmt(item.thicknessMm, 1)}mm</p>
+          <p>${escapeHtml((item.pros || [])[0] || "按指南顺序展示")}</p>
+        </div>`;
+        els.hover.classList.add("show");
+        moveHover(event);
+      }
+
+      function moveHover(event) {
+        const zone = document.querySelector(".chart-zone").getBoundingClientRect();
+        const cardW = 286;
+        const nextX = event.clientX - zone.left + 18;
+        const nextY = event.clientY - zone.top + 18;
+        const x = Math.min(nextX, zone.width - cardW - 12);
+        els.hover.style.left = `${Math.max(12, x)}px`;
+        els.hover.style.top = `${Math.max(64, nextY)}px`;
+      }
+
+      function hideHover() {
+        els.hover.classList.remove("show");
+      }
+
+      function joinNotes(notes) {
+        return notes && notes.length ? notes.slice(0, 4).join(" / ") : "指南未单独标注";
+      }
+
+      function renderCards(items) {
+        if (!items.length) {
+          els.cards.innerHTML = `<div class="empty">当前筛选没有匹配机型。</div>`;
+          return;
+        }
+        els.cards.innerHTML = items.map((item) => {
+          const image = item.image
+            ? `<img src="${escapeHtml(item.image)}" loading="lazy" alt="${escapeHtml(item.brand + item.model)}">`
+            : `<div class="placeholder">${escapeHtml(item.brand)}<br>${escapeHtml(item.model)}</div>`;
+          const source = item.imageSource ? `<a class="action secondary" href="${escapeHtml(item.imageSource)}" target="_blank" rel="noreferrer">外观来源</a>` : "";
+          const link = item.guideLink ? `<a class="action" href="${escapeHtml(item.guideLink)}" target="_blank" rel="noreferrer">懒人链接</a>` : "";
+          return `<article class="card">
+            <div class="card-media">
+              ${image}
+              <div class="tag-row">
+                <span class="tag">${escapeHtml(item.category)}</span>
+                <span class="tag">${escapeHtml(item.priceLabel)}</span>
+                <span class="tag">${escapeHtml(item.gpu)}</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="brandline">
+                <span>${escapeHtml(item.brand)}</span>
+                <span>${escapeHtml(item.screenSize ? `${item.screenSize} 英寸` : "")}</span>
+              </div>
+              <h3>${escapeHtml(item.model)}</h3>
+              <div class="specs">
+                <div class="spec"><b>CPU</b><span>${escapeHtml(item.cpu || "-")}</span></div>
+                <div class="spec"><b>屏幕</b><span>${escapeHtml(item.display || "-")}</span></div>
+                <div class="spec"><b>内存 / 硬盘</b><span>${escapeHtml(`${item.memory || "-"} / ${item.storage || "-"}`)}</span></div>
+                <div class="spec"><b>重量 / 厚度</b><span>${fmt(item.weightKg, 2)}kg / ${fmt(item.thicknessMm, 1)}mm</span></div>
+              </div>
+              <div class="notes">
+                <div class="note-block good"><b>亮点</b><p>${escapeHtml(joinNotes(item.pros))}</p></div>
+                <div class="note-block watch"><b>注意</b><p>${escapeHtml(joinNotes(item.neutral))}</p></div>
+                <div class="note-block bad"><b>短板</b><p>${escapeHtml(joinNotes(item.cons))}</p></div>
+              </div>
+              <div class="actions">${link}${source}</div>
+            </div>
+          </article>`;
+        }).join("");
+      }
+
+      function renderSources() {
+        els.priceNote.textContent = dataset.priceNote || els.priceNote.textContent;
+        els.sourceLine.textContent = `数据源：${dataset.sourceWorkbook || "源指南"}；指南更新时间：${dataset.guideUpdatedAt || "-"}；页面整理时间：${dataset.updatedAt || "-"}`;
+        els.sourceList.innerHTML = (dataset.sources || []).map((source) => (
+          `<div><a href="${escapeHtml(source)}" target="_blank" rel="noreferrer">${escapeHtml(source)}</a></div>`
+        )).join("");
+      }
+
+      function render() {
+        const items = filteredItems();
+        updateMetrics(items);
+        renderChart(items);
+        renderCards(items);
+      }
+
+      async function boot() {
+        try {
+          const response = await fetch("data/laptops.json", { cache: "no-store" });
+          if (!response.ok) throw new Error("data load failed");
+          dataset = await response.json();
+          setupControls();
+          renderSources();
+          render();
+        } catch (error) {
+          document.querySelector(".shell").innerHTML = `<div class="empty">未能读取 data/laptops.json。请从项目根目录启动静态服务器后访问页面。</div>`;
+          console.error(error);
+        }
+      }
+
+      boot();
+    </script>
+  </body>
+</html>

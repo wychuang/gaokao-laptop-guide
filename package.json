@@ -1,0 +1,25 @@
+{
+  "name": "gaokao-laptop-guide",
+  "version": "1.0.0",
+  "description": "A static visual guide for comparing gaming laptops from a buyer-friendly spreadsheet.",
+  "private": true,
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "serve": "python -m http.server 4173 --bind 127.0.0.1",
+    "check": "powershell -ExecutionPolicy Bypass -File scripts/check.ps1",
+    "test": "playwright test tests/smoke.spec.js --reporter=line"
+  },
+  "keywords": [
+    "laptop",
+    "guide",
+    "github-pages",
+    "visualization"
+  ],
+  "author": "",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@playwright/test": "^1.60.0"
+  }
+}

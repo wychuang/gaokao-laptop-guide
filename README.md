@@ -1,6 +1,6 @@
 # 高考后游戏本选购可视化
 
-一个给“小白买游戏本”使用的静态选购页面。它把《小白必读》购机指南里“甜品砖头”和“高端砖头”两个分区的机型整理成可筛选、可比较、可直接发给家人看的网页。
+一个给“小白买游戏本”使用的静态选购页面。它基于金山文档云端表格《小白必读》购机指南，将其中“甜品砖头”和“高端砖头”两个分区的机型整理成可筛选、可比较、可直接发给家人看的网页。
 
 在线页面：
 
@@ -24,7 +24,13 @@ https://github.com/wychuang/gaokao-laptop-guide
 
 ## 数据来源
 
-核心机型数据来自《小白必读》购机指南的本地 `.et` 表格，经脚本抽取为 `data/laptops.json`。
+核心机型数据来自金山文档云端表格：
+
+```text
+https://www.kdocs.cn/l/chzEHrH90jRz
+```
+
+本项目使用流程是：先将这份云端表格下载为 `.et` 文件，放入 `data/` 目录，再通过脚本抽取“甜品砖头”和“高端砖头”两个工作表，生成页面使用的结构化数据 `data/laptops.json`。
 
 外观图来自页面底部列出的公开网页来源。项目不声称与任何品牌、平台或原指南作者有关。
 
@@ -55,7 +61,7 @@ python -m http.server 4173 --bind 127.0.0.1
 
 ## 刷新数据
 
-把源 `.et` 表格放到 `data/` 目录下，然后运行：
+从金山文档下载最新版 `.et` 表格，放到 `data/` 目录下，然后运行：
 
 ```powershell
 python -m venv .venv
@@ -63,7 +69,7 @@ python -m venv .venv
 .\.venv\Scripts\python.exe .\scripts\extract_guide.py
 ```
 
-脚本会优先读取 `data/*.et`，并重新生成 `data/laptops.json`。
+脚本会优先读取 `data/*.et`，并重新生成 `data/laptops.json`。如果云端表格结构发生变化，可能需要同步调整 `scripts/extract_guide.py` 的列映射。
 
 ## 验证
 
@@ -90,6 +96,6 @@ https://wychuang.github.io/gaokao-laptop-guide/
 
 ## 仓库约定
 
-源 `.et` 表格默认不提交到 GitHub。它体积较大，而且是上游指南源文件；公开仓库只提交页面所需的结构化数据 `data/laptops.json`。
+下载得到的 `.et` 表格默认不提交到 GitHub。它体积较大，而且只是云端表格的本地副本；公开仓库只提交页面所需的结构化数据 `data/laptops.json`。
 
 更多 git 安排见 [GIT_PLAN.md](GIT_PLAN.md)。
